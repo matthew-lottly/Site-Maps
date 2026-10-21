@@ -104,9 +104,9 @@ class Legend:
         h = 0.26 + 0.08
         for head, items in self.sections():
             if head:
-                h += 0.2
+                h += 0.175
             plain = [i for i in items if i[0] != "ramp"]
-            h += -(-len(plain) // self.cols) * 0.18 + sum(0.45 for i in items if i[0] == "ramp") + 0.05
+            h += -(-len(plain) // self.cols) * 0.155 + sum(0.45 for i in items if i[0] == "ramp") + 0.05
         return h
 
 
@@ -280,6 +280,7 @@ class Sheet:
         return ax
 
     def locator(self, width_deg: float = 9.0, height_in: float = 1.5):
+        width_deg, height_in = max(width_deg, 14.0), max(height_in, 1.6)   # big enough to read: ~2:1 panel showing several states
         """State/province locator from Natural Earth admin-1 (1:50m) with the map window outlined."""
         src = Source("NE", "Natural Earth", "Admin 1 – States, Provinces 1:50m", "GitHub master at retrieval", "https://www.naturalearthdata.com/", "Public domain")
         path = download("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_1_states_provinces.geojson", "naturalearth/admin1_50m.geojson")
@@ -317,12 +318,12 @@ class Sheet:
         for head, items in lg.sections():
             if head:
                 ax.text(0.03, (y - 0.09) / H, head, fontsize=6.7, fontweight="bold", color=t.ink, va="center", transform=ax.transAxes)
-                y -= 0.2
+                y -= 0.175
             plain = [i for i in items if i[0] != "ramp"]
             for k, r in enumerate(plain):
                 col, row = k // -(-len(plain) // lg.cols) if lg.cols > 1 else 0, k % -(-len(plain) // lg.cols) if lg.cols > 1 else k
                 x0 = 0.03 + col * colw
-                yy = (y - 0.09 - row * 0.18) / H
+                yy = (y - 0.08 - row * 0.155) / H
                 kind = r[0]
                 if kind == "patch":
                     ax.add_patch(Rectangle((x0, yy - 0.055 / H), 0.07, 0.11 / H, fc=r[2], ec=r[4] or "#6B7280", lw=0.4, hatch=r[3], transform=ax.transAxes))
@@ -332,7 +333,7 @@ class Sheet:
                     ax.plot([x0 + 0.035], [yy], marker=r[3], ms=r[4], color=r[2], mec=r[5], mew=0.6, ls="none", transform=ax.transAxes)
                 ax.text(x0 + 0.095, yy, r[1], fontsize=6.3, color=t.ink, va="center", transform=ax.transAxes)
             if plain:
-                y -= -(-len(plain) // lg.cols) * 0.18
+                y -= -(-len(plain) // lg.cols) * 0.155
             for r in [i for i in items if i[0] == "ramp"]:
                 ib = ax.get_position()
                 ia = self.fig.add_axes((ib.x0 + 0.03 * ib.width, ib.y0 + (y - 0.33) / H * ib.height, 0.55 * ib.width, 0.11 / H_IN))
@@ -363,18 +364,23 @@ class Sheet:
             lines.append(f"[{s_.key}] {s_.publisher}: {s_.dataset} ({s_.version}); {s_.license}.")
         lines += [note] if note else []
         avail = self.remaining_in()
-        for fs, chars in ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131), (4.3, 139)):
-            wrapped = [textwrap.fill(x, chars, subsequent_indent="   ") for x in lines]
-            n = sum(w.count("\n") + 1 for w in wrapped)
-            need = 0.26 + 0.1 + n * fs * 0.0172 + 0.03 * len(wrapped)
+        r = self._rend()
+        for fs, chars in ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131), (4.3, 139), (4.0, 150), (3.8, 158)):
+            text = "\n".join(textwrap.fill(x, chars, subsequent_indent="   ") for x in lines)
+            t = self.fig.text(0, 0, text, fontsize=fs, linespacing=1.25)
+            h_in = t.get_window_extent(r).height / self.fig.dpi
+            t.remove()
+            need = 0.26 + 0.14 + h_in + 0.06 * len(lines) * 0
             if need <= avail:
                 break
-        ax = self.panel(min(need, avail), title)
-        y = 1 - (0.26 + 0.08) / min(need, avail)
-        for w in wrapped:
-            ax.text(0.03, y, w, fontsize=fs, color=self.t.ink, va="top", transform=ax.transAxes, linespacing=1.22)
-            y -= ((w.count("\n") + 1) * fs * 0.0172 + 0.03) / min(need, avail)
+        H = min(need, avail)
+        ax = self.panel(H, title)
+        ax.text(0.03, 1 - (0.26 + 0.07) / H, text, fontsize=fs, color=self.t.ink, va="top", transform=ax.transAxes, linespacing=1.25)
         return ax
+
+    def _rend(self):
+        self.fig.canvas.draw()
+        return self.fig.canvas.get_renderer()
 
     def footer(self):
         f, t = self.fig, self.t

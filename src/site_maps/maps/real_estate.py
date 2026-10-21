@@ -222,7 +222,7 @@ class RealEstateSiteMap:
 
     def _tables(self, sheet: Sheet, stats, counts, near, sg):
         t = sheet.t
-        p = sheet.panel(1.62, "Surroundings by distance ring (cumulative)")
+        p = sheet.panel(1.5, "Surroundings by distance ring (cumulative)")
         H = 1.62
         rows = [("Population (HRSL model)", lambda s: f"{s['pop']:,.0f}"), ("People per km²", lambda s: f"{s['density']:,.0f}"), ("Buildings", lambda s: f"{s['buildings']:,}"),
                 ("Footprint coverage", lambda s: f"{s['coverage']:.1%}"), ("Median height (m)", lambda s: f"{s['median_h']:.0f}" if np.isfinite(s["median_h"]) else "n/a"),
@@ -237,7 +237,7 @@ class RealEstateSiteMap:
                 p.text(x, y, f(stats[r]), fontsize=6.8, color=t.ink, ha="center", va="center", fontweight="bold", transform=p.transAxes)
             p.plot([0.03, 0.97], [y - 0.07 / H] * 2, color=t.rule, lw=0.4, transform=p.transAxes)
         # places by group chart
-        p = sheet.panel(1.2, "Open places by category and distance band")
+        p = sheet.panel(1.05, "Open places by category and distance band")
         ax = sheet.chart_axes(p, (0.34, 0.22, 0.60, 0.50))
         cnt = counts.copy()
         cnt["b1"], cnt["b2"], cnt["b3"] = cnt["≤ 0.25 mi"], cnt["≤ 0.5 mi"] - cnt["≤ 0.25 mi"], cnt["≤ 1 mi"] - cnt["≤ 0.5 mi"]
@@ -253,7 +253,7 @@ class RealEstateSiteMap:
         ax.tick_params(axis="y", labelsize=5.8)
         ax.legend(fontsize=5.4, frameon=False, loc="lower right", bbox_to_anchor=(1.0, 0.0))
         # access table
-        p = sheet.panel(1.16, "Nearest streets by class (to the building footprint)")
+        p = sheet.panel(1.0, "Nearest streets by class (to the building footprint)")
         H = 1.16
         hdr = [(0.03, "Class", "left"), (0.24, "Street (as named in data)", "left"), (0.74, "Distance", "right"), (0.97, "Posted max", "right")]
         for x, h_, ha in hdr:
