@@ -1,0 +1,145 @@
+{
+ "retrieved": "2026-10-21",
+ "layers": [
+  {
+   "layer": "Site boundary: Brazos Bend State Park",
+   "features": 1,
+   "detail": "Overture land_use feature adb37d48-f604-3b63-b9b0-099010f527b9 (subtype protected / class natural_monument)",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps 2026-09-23.1",
+    "version": "2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Imagery: Sentinel-2 true colour, 2026-03-21",
+   "features": null,
+   "detail": "scene S2C_15RTN_20260321_0_L2A; TCI product at 10 m; window cloud/shadow 0.0%",
+   "source": {
+    "key": "S2",
+    "publisher": "European Space Agency / Copernicus (processed and hosted by Element 84 on AWS)",
+    "dataset": "Sentinel-2 Level-2A (surface reflectance) COGs",
+    "version": "scene dates as labelled on the sheet",
+    "url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
+    "license": "Copernicus Sentinel data, free and open (attribution required)",
+    "note": "Contains modified Copernicus Sentinel data."
+   }
+  },
+  {
+   "layer": "Land cover inside the park boundary",
+   "features": null,
+   "detail": "10 m classes drawn at 40 % opacity over imagery, only inside the Overture park polygon",
+   "source": {
+    "key": "WC",
+    "publisher": "ESA WorldCover consortium",
+    "dataset": "ESA WorldCover 10 m 2021 v200",
+    "version": "v200, reference year 2021",
+    "url": "https://esa-worldcover.org/",
+    "license": "CC BY 4.0",
+    "note": "Class names and colours as in the WorldCover v200 Product User Manual"
+   }
+  },
+  {
+   "layer": "Hydrography (surface water)",
+   "features": 82,
+   "detail": "Overture 'water' type, bounding-box filter, reprojected to EPSG:32615",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps 2026-09-23.1",
+    "version": "2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Roads and trails",
+   "features": 1253,
+   "detail": "Overture 'segments' type, bounding-box filter, reprojected to EPSG:32615",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps 2026-09-23.1",
+    "version": "2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Points of interest (named)",
+   "features": 62,
+   "detail": "Overture 'places' type, bounding-box filter, reprojected to EPSG:32615",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps 2026-09-23.1",
+    "version": "2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Field observations (research grade)",
+   "features": 23683,
+   "detail": "research-grade, positional accuracy \u2264 100 m, inside the map window; taxon group from iNaturalist taxonomy",
+   "source": {
+    "key": "iNat",
+    "publisher": "iNaturalist (California Academy of Sciences & National Geographic Society)",
+    "dataset": "iNaturalist Open Data on AWS: observations + taxa",
+    "version": "export dated 2026-09-27",
+    "url": "https://registry.opendata.aws/inaturalist-open-data/",
+    "license": "Per-observation Creative Commons licence (CC0, CC-BY, CC-BY-NC); only openly licensed records are in the export",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Locator: state boundaries",
+   "features": 294,
+   "detail": "1:50m admin-1 polygons, unmodified",
+   "source": {
+    "key": "NE",
+    "publisher": "Natural Earth",
+    "dataset": "Admin 1 \u2013 States, Provinces 1:50m",
+    "version": "GitHub master at retrieval",
+    "url": "https://www.naturalearthdata.com/",
+    "license": "Public domain",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Vegetation condition (NDVI series)",
+   "features": 8,
+   "detail": "NDVI=(NIR\u2212Red)/(NIR+Red) from B08/B04 surface reflectance (DN\u00d70.0001; the \u22120.1 offset is applied only where a scene's DNs carry it), vegetation/bare-soil pixels per the scene classification layer; mean and 10\u201390 % band over park pixels; scenes S2A_15RTN_20251014_1_L2A, S2A_15RTN_20251103_1_L2A, S2C_15RTN_20251211_0_L2A, S2A_15RTN_20260102_1_L2A, S2A_15RTN_20260204_0_L2A, S2A_15RTN_20260313_1_L2A, S2A_15RTN_20260512_1_L2A, S2A_15RTN_20260731_1_L2A",
+   "source": {
+    "key": "S2",
+    "publisher": "European Space Agency / Copernicus (processed and hosted by Element 84 on AWS)",
+    "dataset": "Sentinel-2 Level-2A (surface reflectance) COGs",
+    "version": "scene dates as labelled on the sheet",
+    "url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
+    "license": "Copernicus Sentinel data, free and open (attribution required)",
+    "note": "Contains modified Copernicus Sentinel data."
+   }
+  },
+  {
+   "layer": "Climate normals: GHCN USC00418996",
+   "features": null,
+   "detail": "THOMPSONS 3 WSW, 12 km from the park centre; 20 complete years in 1991\u20132020; mean daily max/min and mean monthly precipitation computed from daily values",
+   "source": {
+    "key": "GHCN",
+    "publisher": "NOAA National Centers for Environmental Information",
+    "dataset": "Global Historical Climatology Network \u2013 Daily (GHCN-Daily)",
+    "version": "AWS Open Data snapshot at retrieval",
+    "url": "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
+    "license": "Public domain (U.S. Government work)",
+    "note": "Normals computed here from daily values; quality-flagged values removed"
+   }
+  }
+ ]
+}

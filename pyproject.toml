@@ -1,0 +1,9 @@
+[project]
+name = "site-maps"
+version = "0.1.0"
+description = "Research-grade site maps built only from cited public data"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
