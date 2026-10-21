@@ -1,0 +1,144 @@
+Yosemite Valley: campgrounds
+Camping site map · California, United States of America · imagery with relief, contours, trails, water, facilities and field observations
+37.7396° N  119.5845° W  ·  4 campgrounds
+WGS 84 / UTM zone 11N (EPSG:32611)
+1500 m
+2000 m
+2500 m
+2
+4
+1
+3
+119.62°W
+119.60°W
+119.58°W
+119.56°W
+37.72°N
+37.74°N
+37.76°N
+0
+0.25
+0.5
+0.75
+km
+1:27,310 at 17×11 in
+N
+grid N 1.6° W of true N
+Housekeeping Camp
+North Pines Campground
+Camp 4
+Upper Pines Campground
+Greyhound: Bus Stop - Yosemite Visitor Center
+Yosemite Village Visitor Center
+Four Mile Trailhead
+Illilouette Creek
+Merced River
+Tenaya Creek
+Glacier Point Road
+Happy Isles Loop Road
+Northside Drive
+LOCATOR
+CALIFORNIA
+LEGEND
+Map symbols
+Campground
+Camp site polygon
+River / stream
+Road
+Trail / path / track
+Contour, 100 m
+Facilities in view (count)
+Toilets (68)
+Drinking water (34)
+Parking (37)
+Bus stop (22)
+Trailhead (1)
+Visitor centre (2)
+Research-grade observations (count)
+Plants (5,234)
+Birds (2,592)
+Mammals (1,392)
+Insects (1,032)
+Reptiles (378)
+6 other groups (403)
+TERRAIN AND ACCESS AT EACH CAMPGROUND
+#
+Elev. ⏎ (m)
+Above ⏎ river ⏎ (m)
+Slope ⏎ mean ⏎ (°)
+Toilet ⏎ (m)
+Water ⏎ (m)
+Trailhead ⏎ (m)
+1213
++8
+6.2
+74
+430
+889
+1210
++2
+3.4
+50
+71
+2132
+1216
++7
+5.4
+20
+80
+2666
+1212
++1
+1.2
+52
+180
+3244
+ELEVATION PROFILE ALONG MERCED RIVER
+distance along river line, west to east (km)
+−2
+6
+8
+10
+12
+14
+m
+1000
+1250
+1500
+1750
+CLIMATE NORMALS AND LAND COVER
+Campgrounds average 326 m below the station (DEM)
+J
+F
+M
+A
+S
+O
+D
+precip (mm)
+100
+200
+SO ENTRANCE YOSEMITE NP: 26 km, 1538 m
+°C
+−20
+40
+7%
+25%
+68%
+60
+Bare / sparse ⏎ vegetation
+Grassland
+Tree cover
+Land cover, % of window
+DATA SOURCES
+[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) (release 2026-09-23.1); ODbL 1.0 / CDLA-Permissive-2.0 ⏎    (OSM-derived layers © OpenStreetMap contributors).
+[NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
+[3DEP] U.S. Geological Survey: 3D Elevation Program (3DEP) 1 arc-second DEM (current staged product at retrieval); Public domain ⏎    (U.S. Government work).
+[S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and open; contains ⏎    modified Copernicus Sentinel data.
+[iNat] iNaturalist: iNaturalist Open Data (observations, taxa) (export dated 2026-09-27); per-record CC0 / CC-BY / CC-BY-NC.
+[GHCN] NOAA NCEI: GHCN-Daily (AWS snapshot at retrieval); public domain.
+[WC] ESA WorldCover: WorldCover 10 m 2021 (v200, reference year 2021); CC BY 4.0.
+Prepared 2026-10-21 · site-maps 0.1.0 (e65e37f) · data retrieved 2026-10-21
+Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
+Limits: Campground positions are Overture place points and can be offset from the real site; 38 candidate(s) were dropped by the documented filter.  ·  Elevation is a 1 arc-second DEM, so slope and height above the ⏎ river are indicative at campground scale, not survey values.  ·  Observation points show where people record species, not abundance.
+WGS 84 / UTM zone 11N (EPSG:32611) · graticule WGS 84

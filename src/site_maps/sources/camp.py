@@ -49,8 +49,8 @@ def filter_and_dedupe(places: gpd.GeoDataFrame) -> tuple[gpd.GeoDataFrame, list[
     return c.loc[kept_idx].drop(columns=["_key", "_rank"]), dropped
 
 
-def largest_cluster(points: gpd.GeoDataFrame, link_m: float = CLUSTER_M) -> np.ndarray:
-    """Indices (positional) of the largest single-linkage cluster of points; ties broken by summed confidence."""
+def cluster_labels(points: gpd.GeoDataFrame, link_m: float = CLUSTER_M) -> np.ndarray:
+    """Single-linkage cluster label per point (points closer than `link_m` share a label)."""
     xy = np.c_[points.geometry.x, points.geometry.y]
     n = len(xy)
     lab = -np.ones(n, dtype=int)
@@ -67,8 +67,21 @@ def largest_cluster(points: gpd.GeoDataFrame, link_m: float = CLUSTER_M) -> np.n
                 lab[b] = k
                 stack.append(b)
         k += 1
+    return lab
+
+
+def cluster_near(points: gpd.GeoDataFrame, anchor, link_m: float = CLUSTER_M) -> np.ndarray:
+    """Positional indices of the cluster that contains the point nearest to `anchor` (a shapely Point in the same CRS)."""
+    lab = cluster_labels(points, link_m)
+    nearest = int(np.argmin(points.geometry.distance(anchor).to_numpy()))
+    return np.where(lab == lab[nearest])[0]
+
+
+def largest_cluster(points: gpd.GeoDataFrame, link_m: float = CLUSTER_M) -> np.ndarray:
+    """Indices (positional) of the largest single-linkage cluster of points; ties broken by summed confidence."""
+    lab = cluster_labels(points, link_m)
     conf = points["confidence"].to_numpy()
-    best = max(range(k), key=lambda c: ((lab == c).sum(), conf[lab == c].sum()))
+    best = max(set(lab), key=lambda c: ((lab == c).sum(), conf[lab == c].sum()))
     return np.where(lab == best)[0]
 
 
