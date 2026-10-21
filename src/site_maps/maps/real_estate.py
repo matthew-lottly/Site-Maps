@@ -168,7 +168,7 @@ class RealEstateSiteMap:
         self.log["segments_in_window"] = int(len(seg_c))
 
         # ---- right column
-        sheet.locator(width_deg=9.0, height_in=0.7)
+        sheet.locator(width_deg=7.0, height_in=1.0)
         lg = Legend("Legend", cols=4)
         lg.header("Buildings (colour = Overture height)")
         lg.ramp("Height 0–150 m (taller capped)", "YlOrBr", 0, 150, "m")

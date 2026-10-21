@@ -106,7 +106,7 @@ class Legend:
             if head:
                 h += 0.2
             plain = [i for i in items if i[0] != "ramp"]
-            h += -(-len(plain) // self.cols) * 0.18 + sum(0.55 for i in items if i[0] == "ramp") + 0.05
+            h += -(-len(plain) // self.cols) * 0.18 + sum(0.45 for i in items if i[0] == "ramp") + 0.05
         return h
 
 
@@ -335,14 +335,14 @@ class Sheet:
                 y -= -(-len(plain) // lg.cols) * 0.18
             for r in [i for i in items if i[0] == "ramp"]:
                 ib = ax.get_position()
-                ia = self.fig.add_axes((ib.x0 + 0.03 * ib.width, ib.y0 + (y - 0.42) / H * ib.height, 0.55 * ib.width, 0.11 / H_IN))
+                ia = self.fig.add_axes((ib.x0 + 0.03 * ib.width, ib.y0 + (y - 0.33) / H * ib.height, 0.55 * ib.width, 0.11 / H_IN))
                 ia.imshow(np.linspace(0, 1, 256)[None, :], aspect="auto", cmap=r[2], extent=(r[3], r[4], 0, 1))
                 ia.set_yticks([]); ia.tick_params(labelsize=5.6, length=2, colors=t.muted)
                 for sp in ia.spines.values():
                     sp.set_linewidth(0.4)
                 ax.text(0.03, (y - 0.08) / H, r[1], fontsize=6.3, color=t.ink, va="center", transform=ax.transAxes)
-                ax.text(0.62, (y - 0.33) / H, r[5], fontsize=6.0, color=t.muted, va="center", transform=ax.transAxes)
-                y -= 0.55
+                ax.text(0.62, (y - 0.26) / H, r[5], fontsize=6.0, color=t.muted, va="center", transform=ax.transAxes)
+                y -= 0.45
             y -= 0.05
         return ax
 
@@ -363,7 +363,7 @@ class Sheet:
             lines.append(f"[{s_.key}] {s_.publisher}: {s_.dataset} ({s_.version}); {s_.license}.")
         lines += [note] if note else []
         avail = self.remaining_in()
-        for fs, chars in ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131)):
+        for fs, chars in ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131), (4.3, 139)):
             wrapped = [textwrap.fill(x, chars, subsequent_indent="   ") for x in lines]
             n = sum(w.count("\n") + 1 for w in wrapped)
             need = 0.26 + 0.1 + n * fs * 0.0172 + 0.03 * len(wrapped)
