@@ -1,0 +1,118 @@
+Comanche (CO) power plant, Colorado
+Utility site map · generating plant, transmission and distribution lines, substations, pipelines, access and water
+38.2081° N  104.5747° W  ·  1,635 MW (Coal)
+WGS 84 / UTM zone 13N (EPSG:32613)
+104.65°W
+104.60°W
+104.55°W
+104.50°W
+38.20°N
+38.25°N
+0
+0.5
+1
+1.5
+2
+2.5
+km
+1:54,620 at 17×11 in
+N
+grid N 0.3° E of true N
+Comanche (CO) (WRI USA0000470)
+Comanche Substation (345 kV)
+Reader Substation (115 kV)
+Freemary Substation (69 kV)
+CF&I East Substation (230 kV)
+Green Horn Substation (115 kV)
+Prairie Substation (69 kV)
+John F. Kennedy Memorial Highway
+Lime Road
+PLANT DETAIL 2.4 km
+108 buildings · 18 generator/transformer/switch points
+LOCATOR
+LEGEND
+Power system (OpenStreetMap-derived)
+Line ≥ 345 kV
+Line 230–344 kV
+Line 115–229 kV
+Line < 115 kV
+Line voltage not tagged
+Cable
+Transmission tower
+Substation
+Plant footprint
+WRI plant location
+Pipeline
+Base
+Road (primary–tertiary)
+Railway
+Surface water
+FACILITY FACTS
+Capacity (WRI)
+1,635.3 MW
+Primary fuel (WRI)
+Coal
+Owner (WRI)
+Public Service Co of Colorado
+Commissioning year (WRI)
+1993
+Elevation within 5 km (3DEP)
+1410–1493 m (mean 1461)
+Footprint area (Overture)
+1.39 km²
+Nearest substation
+Comanche Substation, 0.37 km
+Nearest surface water
+unnamed reservoir, 0.19 km
+GRID AROUND THE PLANT
+voltage class (kV)
+≥ 345
+230–344
+115–229
+< 115
+untagged
+100
+200
+300
+Line length by voltage class (km)
+within 5 km
+within 20 km
+3
+10
+14
+18
+distance from plant (km)
+0-1
+1-2.5
+2.5-5
+5-10
+10-20
+1000
+2000
+Towers and substations by distance band
+towers
+substations
+LAND COVER AROUND THE PLANT (SHARE OF AREA)
+% of area
+20
+30
+40
+50
+60
+70
+Tree cover
+Built-up
+Bare / sparse vegetation
+Cropland
+Grassland
+DATA SOURCES
+[WRI] World Resources Institute (Global Power Plant Database): Global Power Plant Database (v1.3.0 (WRI states it ⏎    has not been maintained since early 2022)); CC BY 4.0.
+[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) (release 2026-09-23.1); ODbL 1.0 / ⏎    CDLA-Permissive-2.0 (OSM-derived layers © OpenStreetMap contributors).
+[NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
+[S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and ⏎    open; contains modified Copernicus Sentinel data.
+[WC] ESA WorldCover: WorldCover 10 m 2021 (v200, reference year 2021); CC BY 4.0.
+[3DEP] U.S. Geological Survey: 3D Elevation Program (3DEP) 1 arc-second DEM (current staged product at retrieval); ⏎    Public domain (U.S. Government work).
+Prepared 2026-10-21 · site-maps 0.1.0 (21fbffb) · data retrieved 2026-10-21
+Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
+Limits: Power, pipeline and substation features are OpenStreetMap contributions carried by Overture, not an engineering or utility record; voltages only as tagged; absence of a feature does not mean absence on the ⏎ ground.  ·  Plant attributes are WRI Global Power Plant Database v1.3.0 (unmaintained since early 2022; Overture's plant tag cites U.S. Energy Information Administration - EIA-860 - 2021).  ·  Land cover: ESA ⏎ WorldCover 2021 (statistics on a 30 m grid).
+WGS 84 / UTM zone 13N (EPSG:32613) · graticule WGS 84

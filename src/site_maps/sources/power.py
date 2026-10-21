@@ -15,6 +15,7 @@ GPPD = Source("WRI", "World Resources Institute (Global Power Plant Database)", 
 
 VOLTAGE_CLASSES = [("≥ 345 kV", 345.0, 1e9), ("230–344 kV", 230.0, 345.0), ("115–229 kV", 115.0, 230.0), ("< 115 kV", 0.0, 115.0)]
 UNKNOWN = "voltage not tagged"
+NE_SOURCE = Source("NE", "Natural Earth", "Admin 1 – States, Provinces 1:50m", "GitHub master at retrieval", "https://www.naturalearthdata.com/", "Public domain")
 
 
 def load_gppd() -> pd.DataFrame:
