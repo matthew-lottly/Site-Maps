@@ -1,0 +1,20 @@
+| Layer | Source | Dataset / version | Features | Processing |
+|---|---|---|---|---|
+| Subject building: Rainier Square | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 1 | Overture building bffb77cb-5b55-4536-94a2-e52504282cea; height and floor count as published in the feature |
+| Place names (neighbourhood, county, region) | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 6 | names of the Overture division polygons that contain the subject building centroid |
+| Imagery: Sentinel-2 true colour, 2026-10-15 | ESA Copernicus (COGs by Element 84) (S2) | [Sentinel-2 L2A COGs](https://registry.opendata.aws/sentinel-2-l2a-cogs/), scene dates as labelled on the sheet |  | scene S2A_10TET_20261015_0_L2A, 10 m TCI, window cloud/shadow 0.0%; washed 45 % toward white under the vector layers |
+| Land use (OpenStreetMap-derived) | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 1163 | Overture 'land_use' type, bounding-box filter, reprojected to EPSG:32610 |
+| Building footprints | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 15421 | Overture 'buildings' type, bounding-box filter, reprojected to EPSG:32610 |
+| Streets (by road class, speed limits where tagged) | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 18754 | Overture 'segments' type, bounding-box filter, reprojected to EPSG:32610 |
+| Places (businesses and facilities) | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 14418 | Overture 'places' type, bounding-box filter, reprojected to EPSG:32610; kept open places with confidence ≥ 0.7 |
+| Population density | Meta Data for Good / CIESIN (Columbia University) (HRSL) | [High Resolution Settlement Layer, general population (hrsl_general, latest.vrt mosaic)](https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps), tile file version as named on the sheet | 7233 | tile v1/cog_globallat_40_lon_-130_general-v1.1.tif; cells with centre inside each ring summed; 7,233 populated cells in the window |
+| Terrain: 3DEP elevation | U.S. Geological Survey (3DEP) | [3D Elevation Program (3DEP) 1 arc-second DEM](https://www.usgs.gov/3d-elevation-program), current staged product at retrieval |  | 30 m grid resampled to the map grid; minimum and maximum inside each ring |
+| Locator: state boundaries | Natural Earth (NE) | [Admin 1 – States, Provinces 1:50m](https://www.naturalearthdata.com/), GitHub master at retrieval | 294 | 1:50m admin-1 polygons, unmodified |
+
+| Key | Publisher | Dataset | Version | Licence |
+|---|---|---|---|---|
+| OV | Overture Maps Foundation | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/) | release 2026-09-23.1 | ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers © OpenStreetMap contributors) |
+| S2 | ESA Copernicus (COGs by Element 84) | [Sentinel-2 L2A COGs](https://registry.opendata.aws/sentinel-2-l2a-cogs/) | scene dates as labelled on the sheet | free and open; contains modified Copernicus Sentinel data |
+| HRSL | Meta Data for Good / CIESIN (Columbia University) | [High Resolution Settlement Layer, general population (hrsl_general, latest.vrt mosaic)](https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps) | tile file version as named on the sheet | CC BY 4.0 |
+| 3DEP | U.S. Geological Survey | [3D Elevation Program (3DEP) 1 arc-second DEM](https://www.usgs.gov/3d-elevation-program) | current staged product at retrieval | Public domain (U.S. Government work) |
+| NE | Natural Earth | [Admin 1 – States, Provinces 1:50m](https://www.naturalearthdata.com/) | GitHub master at retrieval | Public domain |

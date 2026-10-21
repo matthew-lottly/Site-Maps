@@ -1,0 +1,136 @@
+Rainier Square
+Real-estate site analysis · King County, Washington
+47.6090° N  122.3349° W  ·  rings 0.25 / 0.5 / 1 mile
+WGS 84 / UTM zone 10N (EPSG:32610)
+122.36°W
+122.35°W
+122.34°W
+122.33°W
+122.32°W
+122.31°W
+47.60°N
+47.61°N
+47.62°N
+0
+125
+250
+375
+500
+m
+1:15,658 at 17×11 in
+N
+grid N 0.5° E of true N
+0.25 mi
+0.5 mi
+1 mi
+Rainier Square · 259 m
+State Route 99 Tunnel
+Alaskan Way
+LOCATOR
+WASHINGTON
+LEGEND
+Buildings (colour = Overture height)
+No height
+Subject
+Height 0–150 m (taller capped)
+Streets (by class)
+Motorway
+Primary
+Secondary
+Residential
+Land use (OSM-derived, 30 % opacity)
+Retail
+Commercial
+Industrial
+Park
+Recreation / golf
+Education
+20
+40
+60
+80
+100
+120
+140
+160
+SURROUNDINGS BY DISTANCE RING (CUMULATIVE)
+≤ 0.25 mi
+≤ 0.5 mi
+≤ 1 mi
+Population (HRSL model)
+769
+11,340
+42,012
+People per km²
+1,513
+5,575
+5,163
+Buildings
+173
+730
+3,033
+Footprint coverage
+48.9%
+40.8%
+30.5%
+Median height (m)
+32
+26
+14
+Open places
+2,057
+5,741
+10,711
+Elevation range, 3DEP (m)
+13 to 74
+0 to 102
+0 to 111
+OPEN PLACES BY CATEGORY AND DISTANCE BAND
+414
+877
+1,318
+1,751
+4,512
+1000
+2000
+3000
+4000
+5000
+6000
+Community & gov.
+Shopping
+Health care
+Food & drink
+Services & business
+0–0.25 mi
+0.25–0.5 mi
+0.5–1 mi
+NEAREST STREETS BY CLASS (TO THE BUILDING FOOTPRINT)
+Class
+Street (as named in data)
+Distance
+Posted max
+(unnamed in data)
+124 m
+not tagged
+Trunk
+Colman Dock
+728 m
+4th Avenue
+15 m
+25 mph
+5th Avenue
+9 m
+Tertiary
+Union Street
+10 m
+DATA SOURCES
+[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) (release 2026-09-23.1); ODbL 1.0 / ⏎    CDLA-Permissive-2.0 (OSM-derived layers © OpenStreetMap contributors).
+[S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and ⏎    open; contains modified Copernicus Sentinel data.
+[HRSL] Meta Data for Good / CIESIN (Columbia University): High Resolution Settlement Layer, general population ⏎    (hrsl_general, latest.vrt mosaic) (tile file version as named on the sheet); CC BY 4.0.
+[3DEP] U.S. Geological Survey: 3D Elevation Program (3DEP) 1 arc-second DEM (current staged product at retrieval); ⏎    Public domain (U.S. Government work).
+[NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
+Prepared 2026-10-21 · site-maps 0.1.0 (ee353f3) · data retrieved 2026-10-21
+Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
+Limits: Heights are recorded for 75% of footprints in the window; the rest are grey.  ·  Population is a modelled estimate (HRSL), counted by cell centre within each ring.  ·  Land use, streets, places and buildings ⏎ are OpenStreetMap-derived (Overture) and may lag the ground.
+WGS 84 / UTM zone 10N (EPSG:32610) · graticule WGS 84

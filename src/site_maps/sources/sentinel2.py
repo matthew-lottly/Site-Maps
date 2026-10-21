@@ -53,7 +53,10 @@ def scenes(lon: float, lat: float, start: dt.date, end: dt.date) -> list[Scene]:
             if start <= d <= end:
                 jp = cache_path(f"s2/{pfx.strip('/').split('/')[-1]}.json")
                 if not jp.exists():
-                    jp.write_text(requests.get(f"{BASE}/{pfx}{pfx.strip('/').split('/')[-1]}.json", timeout=60).text)
+                    resp = requests.get(f"{BASE}/{pfx}{pfx.strip('/').split('/')[-1]}.json", timeout=60)
+                    if resp.status_code != 200:               # a listed scene without its item JSON is skipped
+                        continue
+                    jp.write_text(resp.text)
                 j = json.loads(jp.read_text())
                 out.append(Scene(pfx.strip("/"), d, float(j["properties"].get("eo:cloud_cover", 100)), int(j["properties"]["proj:epsg"])))
         ym = dt.date(ym.year + (ym.month == 12), ym.month % 12 + 1, 1)
