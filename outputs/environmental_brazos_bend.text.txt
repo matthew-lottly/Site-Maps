@@ -1,0 +1,123 @@
+Brazos Bend State Park, Texas
+Environmental site map · imagery, land cover, hydrography, field observations, vegetation condition and climate
+29.3815° N  95.6027° W  ·  park area 21.7 km²
+WGS 84 / UTM zone 15N (EPSG:32615)
+95.65°W
+95.60°W
+95.55°W
+29.35°N
+29.40°N
+0
+0.5
+1
+1.5
+2
+2.5
+km
+1:45,881 at 17×11 in
+N
+grid N 1.3° W of true N
+Brazos Bend State Park - Texas Parks and Wildlife
+Elm Lake Observation Deck
+New Horseshoe Lake
+Rayford williams park
+Pilant Lake
+Turner Lake
+40 Acre Lake
+Hale Lake
+Creekfield Lake
+C W Cumings Road
+Cow Creek Road
+Cow Micham Road
+Davis Estate Road
+Lockridge Road
+Sandy Point Road
+Sawmill Road
+LOCATOR
+LEGEND
+Boundary and base
+Park boundary (Overture land_use)
+Surface water
+Road
+Trail / track
+Named point of interest
+Land cover inside park (WorldCover 10 m, 40 % opacity)
+Tree cover
+Grassland
+Herbaceous wetland
+Permanent water bodies
+Cropland
+Built-up
+Bare / sparse vegetation
+Research-grade observations
+Birds
+Reptiles
+Amphibians
+Mammals
+Fishes
+Insects
+Arachnids
+Plants
+Fungi
+Molluscs
+Other
+COMPOSITION AND OBSERVATIONS
+0.00 km² (0%)
+0.06 km² (0%)
+0.15 km² (1%)
+0.19 km² (1%)
+0.99 km² (5%)
+1.51 km² (7%)
+18.77 km² (87%)
+10
+20
+30
+40
+Land cover in park (km²)
+94
+505
+507
+543
+2,583
+5,189
+5,709
+7,976
+2000
+4000
+6000
+8000
+10000
+Observations inside park (n=23,253)
+VEGETATION CONDITION AND CLIMATE
+Nov
+Jan
+Mar
+May
+Jul
+0.0
+1.0
+NDVI inside park, clearest scene per month
+J
+F
+M
+A
+S
+O
+D
+precip (mm)
+50
+100
+150
+THOMPSONS 3 WSW (12 km)
+°C
+DATA SOURCES
+[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) (release 2026-09-23.1); ODbL 1.0 / CDLA-Permissive-2.0 ⏎    (OSM-derived layers © OpenStreetMap contributors).
+[S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and open; contains ⏎    modified Copernicus Sentinel data.
+[WC] ESA WorldCover: WorldCover 10 m 2021 (v200, reference year 2021); CC BY 4.0.
+[iNat] iNaturalist: iNaturalist Open Data (observations, taxa) (export dated 2026-09-27); per-record CC0 / CC-BY / CC-BY-NC.
+[NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
+[GHCN] NOAA NCEI: GHCN-Daily (AWS snapshot at retrieval); public domain.
+Prepared 2026-10-21 · site-maps 0.1.0 (5b390d1) · data retrieved 2026-10-21
+Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
+Limits: Land cover is a 10 m global product and misclassifies small features.  ·  The park polygon is OSM-derived, not a surveyed boundary.  ·  Observation density follows where people walk, so it reflects observer ⏎ effort as well as biodiversity.  ·  NDVI months without a clear scene are absent, not interpolated.
+WGS 84 / UTM zone 15N (EPSG:32615) · graticule WGS 84
