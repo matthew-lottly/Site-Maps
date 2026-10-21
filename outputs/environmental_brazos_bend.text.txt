@@ -117,7 +117,7 @@ DATA SOURCES
 [iNat] iNaturalist: iNaturalist Open Data (observations, taxa) (export dated 2026-09-27); per-record CC0 / CC-BY / CC-BY-NC.
 [NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
 [GHCN] NOAA NCEI: GHCN-Daily (AWS snapshot at retrieval); public domain.
-Prepared 2026-10-21 · site-maps 0.1.0 (b9ec8ae) · data retrieved 2026-10-21
+Prepared 2026-10-21 · site-maps 0.1.0 (3c71768) · data retrieved 2026-10-21
 Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
 Limits: Land cover is a 10 m global product and misclassifies small features.  ·  The park polygon is OSM-derived, not a surveyed boundary.  ·  Observation density can reflect observer effort as well as ⏎ biodiversity.  ·  NDVI months without a clear scene are absent, not interpolated.
 WGS 84 / UTM zone 15N (EPSG:32615) · graticule WGS 84

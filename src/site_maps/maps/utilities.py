@@ -221,7 +221,7 @@ class UtilitiesSiteMap:
         prov.add("Terrain", zsrc, None, "1 arc-second DEM resampled to 30 m; min / mean / max within 5 km of the plant")
 
         # ---- right column
-        sheet.locator(width_deg=14.0, height_in=0.9)
+        sheet.locator(width_deg=8.0, height_in=0.9)
         lg = Legend("Legend")
         lg.header("Power system (OpenStreetMap-derived)")
         for cls in ORDER:
