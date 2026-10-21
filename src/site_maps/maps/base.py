@@ -41,7 +41,7 @@ def overture_layer(kind: str, frame: SiteFrame, columns: list[str], prov: Proven
     return g
 
 
-def label_lines(ax, gdf, text_col: str, frame: SiteFrame, min_len_frac: float = 0.12, fontsize: float = 6.4, color="#1F2933", exclude=None, max_labels: int = 14):
+def label_lines(ax, gdf, text_col: str, frame: SiteFrame, min_len_frac: float = 0.12, fontsize: float = 6.4, color="#1F2933", exclude=None, max_labels: int = 14, placer=None):
     """Name roads / rivers along the longest visible piece of each name, rotated to follow it."""
     x0, y0, x1, y1 = frame.extent
     W = x1 - x0
@@ -70,7 +70,11 @@ def label_lines(ax, gdf, text_col: str, frame: SiteFrame, min_len_frac: float = 
         a, c = best.interpolate(0.46, normalized=True), best.interpolate(0.54, normalized=True)
         ang = np.degrees(np.arctan2(c.y - a.y, c.x - a.x))
         ang = ang + 180 if ang > 90 or ang < -90 else ang
-        ax.text(mid.x, mid.y, name, rotation=ang, rotation_mode="anchor", ha="center", va="center", fontsize=fontsize, color=color, zorder=50, path_effects=halo(2.4))
+        if placer is not None:
+            if placer.place_centered(mid.x, mid.y, name, rotation=ang, fontsize=fontsize, color=color) is None:
+                continue
+        else:
+            ax.text(mid.x, mid.y, name, rotation=ang, rotation_mode="anchor", ha="center", va="center", fontsize=fontsize, color=color, zorder=50, path_effects=halo(2.4))
         placed.append((mid.x, mid.y))
         n += 1
         if n >= max_labels:

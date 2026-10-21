@@ -15,8 +15,8 @@ from ..core.cache import cache_path, download
 from ..core.provenance import Source
 
 BASE = "https://inaturalist-open-data.s3.amazonaws.com"
-SOURCE = Source("iNat", "iNaturalist (California Academy of Sciences & National Geographic Society)", "iNaturalist Open Data on AWS: observations + taxa", "export dated 2026-09-27",
-                "https://registry.opendata.aws/inaturalist-open-data/", "Per-observation Creative Commons licence (CC0, CC-BY, CC-BY-NC); only openly licensed records are in the export")
+SOURCE = Source("iNat", "iNaturalist", "iNaturalist Open Data (observations, taxa)", "export dated 2026-09-27",
+                "https://registry.opendata.aws/inaturalist-open-data/", "per-record CC0 / CC-BY / CC-BY-NC")
 
 
 def extract(boxes: dict[str, tuple[float, float, float, float]], chunk_rows: int = 2_000_000, log=print) -> dict[str, str]:
