@@ -123,8 +123,9 @@ Colman Dock
 Union Street
 10 m
 DATA SOURCES
-[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) (release 2026-09-23.1); ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers ⏎    © OpenStreetMap contributors). ⏎ [S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and open; contains modified Copernicus ⏎    Sentinel data. ⏎ [HRSL] Meta Data for Good / CIESIN (Columbia University): High Resolution Settlement Layer, general population (hrsl_general, latest.vrt mosaic) (tile ⏎    file version as named on the sheet); CC BY 4.0. ⏎ [3DEP] U.S. Geological Survey: 3D Elevation Program (3DEP) 1 arc-second DEM (current staged product at retrieval); Public domain (U.S. Government ⏎    work). ⏎ [NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
-Prepared 2026-10-21 · site-maps 0.1.0 (8622c25) · data retrieved 2026-10-21
+[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) ⏎    (release 2026-09-23.1); ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived …. ⏎ [S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates ⏎    as labelled on the sheet); free and open; contains modified Copernicus ⏎    …. ⏎ [HRSL] Meta Data for Good / CIESIN (Columbia University): High Resolution ⏎    Settlement Layer, general population (hrsl_general, latest.vrt mosaic) ⏎    (tile file version as named on the sheet); CC BY 4.0.
+[3DEP] U.S. Geological Survey: 3D Elevation Program (3DEP) 1 arc-second DEM ⏎    (current staged product at retrieval); Public domain (U.S. Government ⏎    work). ⏎ [NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at ⏎    retrieval); Public domain.
+Prepared 2026-10-21 · site-maps 0.1.0 (8d12354) · data retrieved 2026-10-21
 Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
 Limits: Heights are recorded for 74% of footprints in the window; the rest are grey.  ·  Population is a modelled estimate (HRSL), counted by cell centre within each ring.  ·  Land use, streets, places and buildings ⏎ are OpenStreetMap-derived (Overture) and may lag the ground.
 WGS 84 / UTM zone 10N (EPSG:32610) · graticule WGS 84

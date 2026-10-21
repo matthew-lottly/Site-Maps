@@ -28,6 +28,8 @@ def main(argv=None) -> int:
             continue
         sheet = m.build()
         print(f"✔ {key}: {a.outdir}/{m.key}.png")
+        for i in getattr(sheet, "last_issues", []) or []:
+            print("   layout:", i)
     return 0
 
 

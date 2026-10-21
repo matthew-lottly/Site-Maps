@@ -223,7 +223,7 @@ class RealEstateSiteMap:
     def _tables(self, sheet: Sheet, stats, counts, near, sg):
         t = sheet.t
         p = sheet.panel(1.5, "Surroundings by distance ring (cumulative)")
-        H = 1.62
+        H = 1.5
         rows = [("Population (HRSL model)", lambda s: f"{s['pop']:,.0f}"), ("People per km²", lambda s: f"{s['density']:,.0f}"), ("Buildings", lambda s: f"{s['buildings']:,}"),
                 ("Footprint coverage", lambda s: f"{s['coverage']:.1%}"), ("Median height (m)", lambda s: f"{s['median_h']:.0f}" if np.isfinite(s["median_h"]) else "n/a"),
                 ("Open places", lambda s: f"{s['places']:,}"), ("Elevation range, 3DEP (m)", lambda s: f"{int(round(s['zmin']))} to {int(round(s['zmax']))}")]
@@ -231,7 +231,7 @@ class RealEstateSiteMap:
         for x, r in zip(xs, RINGS_MI):
             p.text(x, 1 - 0.46 / H, f"≤ {r:g} mi", fontsize=6.6, fontweight="bold", color=t.ink, ha="center", va="center", transform=p.transAxes)
         for i, (lab, f) in enumerate(rows):
-            y = 1 - (0.70 + i * 0.125) / H
+            y = 1 - (0.70 + i * 0.11) / H
             p.text(0.03, y, lab, fontsize=6.4, color=t.muted, va="center", transform=p.transAxes)
             for x, r in zip(xs, RINGS_MI):
                 p.text(x, y, f(stats[r]), fontsize=6.8, color=t.ink, ha="center", va="center", fontweight="bold", transform=p.transAxes)
@@ -253,13 +253,13 @@ class RealEstateSiteMap:
         ax.tick_params(axis="y", labelsize=5.8)
         ax.legend(fontsize=5.4, frameon=False, loc="lower right", bbox_to_anchor=(1.0, 0.0))
         # access table
-        p = sheet.panel(1.0, "Nearest streets by class (to the building footprint)")
-        H = 1.16
+        p = sheet.panel(1.18, "Nearest streets by class (to the building footprint)")
+        H = 1.18
         hdr = [(0.03, "Class", "left"), (0.24, "Street (as named in data)", "left"), (0.74, "Distance", "right"), (0.97, "Posted max", "right")]
         for x, h_, ha in hdr:
             p.text(x, 1 - 0.46 / H, h_, fontsize=5.8, fontweight="bold", color=t.muted, ha=ha, va="center", transform=p.transAxes)
         for i, (_, r) in enumerate(near.iterrows()):
-            y = 1 - (0.64 + i * 0.105) / H
+            y = 1 - (0.62 + i * 0.105) / H
             d = r["dist_to_footprint_m"]
             p.text(0.03, y, r["class"].title(), fontsize=6.2, color=t.ink, va="center", transform=p.transAxes)
             p.text(0.22, y, str(r["name"])[:32] if isinstance(r["name"], str) else "(unnamed in data)", fontsize=6.2, color=t.ink, va="center", transform=p.transAxes)

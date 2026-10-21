@@ -124,6 +124,7 @@ class Sheet:
         self.prov = prov or ProvenanceLog()
         self.fig = plt.figure(figsize=(W_IN, H_IN), facecolor=self.t.paper)
         self.notes: list[str] = []
+        self.last_issues: list[str] = []
         self._y = 0.905                           # top of the next right-column panel (figure fraction)
         self._title_block()
         self.ax = self._map_axes()
@@ -280,7 +281,7 @@ class Sheet:
         return ax
 
     def locator(self, width_deg: float = 9.0, height_in: float = 1.5):
-        width_deg, height_in = max(width_deg, 14.0), max(height_in, 1.6)   # big enough to read: ~2:1 panel showing several states
+        width_deg, height_in = max(width_deg, 14.0), max(height_in, 1.5)   # big enough to read: ~2:1 panel showing several states
         """State/province locator from Natural Earth admin-1 (1:50m) with the map window outlined."""
         src = Source("NE", "Natural Earth", "Admin 1 – States, Provinces 1:50m", "GitHub master at retrieval", "https://www.naturalearthdata.com/", "Public domain")
         path = download("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_1_states_provinces.geojson", "naturalearth/admin1_50m.geojson")
@@ -361,21 +362,32 @@ class Sheet:
     def sources_box(self, title: str = "Data sources", note: str = ""):
         lines = []
         for s_ in self.prov.sources():
-            lines.append(f"[{s_.key}] {s_.publisher}: {s_.dataset} ({s_.version}); {s_.license}.")
+            lic = s_.license if len(s_.license) <= 44 else s_.license[:44].rsplit(' ', 1)[0].rstrip(';,(') + ' …'
+            lines.append(f"[{s_.key}] {s_.publisher}: {s_.dataset} ({s_.version}); {lic}.")
         lines += [note] if note else []
         avail = self.remaining_in()
         r = self._rend()
-        for fs, chars in ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131), (4.3, 139), (4.0, 150), (3.8, 158)):
-            text = "\n".join(textwrap.fill(x, chars, subsequent_indent="   ") for x in lines)
-            t = self.fig.text(0, 0, text, fontsize=fs, linespacing=1.25)
-            h_in = t.get_window_extent(r).height / self.fig.dpi
-            t.remove()
-            need = 0.26 + 0.14 + h_in + 0.06 * len(lines) * 0
-            if need <= avail:
+        best = None
+        for cols, steps in ((1, ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131), (4.3, 139))), (2, ((5.0, 62), (4.7, 66), (4.4, 70), (4.1, 75)))):
+            for fs, chars in steps:
+                per = -(-len(lines) // cols)
+                blocks = ["\n".join(textwrap.fill(x, chars, subsequent_indent="   ") for x in lines[i * per:(i + 1) * per]) for i in range(cols)]
+                hs = []
+                for bl in blocks:
+                    t = self.fig.text(0, 0, bl, fontsize=fs, linespacing=1.25)
+                    hs.append(t.get_window_extent(r).height / self.fig.dpi)
+                    t.remove()
+                need = 0.26 + 0.14 + max(hs)
+                best = (need, blocks, fs, cols)
+                if need <= avail:
+                    break
+            if best[0] <= avail:
                 break
+        need, blocks, fs, cols = best
         H = min(need, avail)
         ax = self.panel(H, title)
-        ax.text(0.03, 1 - (0.26 + 0.07) / H, text, fontsize=fs, color=self.t.ink, va="top", transform=ax.transAxes, linespacing=1.25)
+        for i, bl in enumerate(blocks):
+            ax.text(0.03 + i * 0.5, 1 - (0.26 + 0.07) / H, bl, fontsize=fs, color=self.t.ink, va="top", transform=ax.transAxes, linespacing=1.25)
         return ax
 
     def _rend(self):
@@ -405,7 +417,7 @@ class Sheet:
         (outdir / f"{stem}.provenance.json").write_text(self.prov.to_json())
         (outdir / f"{stem}.sources.md").write_text(self.prov.to_markdown())
         (outdir / f"{stem}.text.txt").write_text(self.text_inventory())
-        out["issues"] = self.audit()
+        out["issues"] = self.last_issues = self.audit()
         plt.close(self.fig)
         return out
 

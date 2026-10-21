@@ -340,7 +340,7 @@ class CampingSiteMap:
 
         # ---- table of terrain and facility distances
         rows = len(m)
-        h = 0.26 + 0.12 + 0.42 + rows * 0.2 + 0.08
+        h = 0.26 + 0.12 + 0.42 + rows * 0.17 + 0.08
         ax = sheet.panel(h, "Terrain and access at each campground")
         cols = [("#", 0.03, "l"), ("Campground", 0.075, "l"), ("Elev.", 0.56, "r"), ("Above\nriver", 0.655, "r"), ("Slope\nmean", 0.745, "r"), ("Toilet", 0.83, "r"), ("Water", 0.905, "r"), ("Trailhead", 0.985, "r")]
         units = {"Elev.": "m", "Above\nriver": "m", "Slope\nmean": "°", "Toilet": "m", "Water": "m", "Trailhead": "m"}
@@ -350,7 +350,7 @@ class CampingSiteMap:
             ax.text(x, top, txt, fontsize=5.4, fontweight="bold", color=t.muted, ha="right" if al == "r" else "left", va="top", transform=ax.transAxes, linespacing=1.15)
         ax.plot([0.02, 0.99], [top - 0.36 / h] * 2, color=t.rule, lw=0.6, transform=ax.transAxes)
         for k, r in m.sort_values("n").reset_index(drop=True).iterrows():
-            y = top - (0.42 + 0.12 + k * 0.2) / h
+            y = top - (0.42 + 0.12 + k * 0.17) / h
             vals = [str(int(r["n"])), r["name"][:26], f"{r['elev_m']:.0f}", f"{r.get('above_river_m', np.nan):+.0f}", f"{r['slope_mean']:.1f}", f"{r['toilets']:.0f}", f"{r['drinking_water']:.0f}", f"{r['trailhead']:.0f}"]
             for (label, x, al), v in zip(cols, vals):
                 ax.text(x, y, v, fontsize=6.2, color=t.ink, ha="right" if al == "r" else "left", va="center", transform=ax.transAxes)
@@ -379,7 +379,7 @@ class CampingSiteMap:
             self.log["river_profile_m"] = {"length": round(L), "min": round(float(np.nanmin(e))), "max": round(float(np.nanmax(e)))}
 
         # ---- climate + land cover
-        panel = sheet.panel(1.3, "Climate normals and land cover")
+        panel = sheet.panel(1.2, "Climate normals and land cover")
         a1 = sheet.chart_axes(panel, (0.10, 0.31, 0.30, 0.38))
         st, dd, km = ghcn.best_station(*frame.center, max_km=60, min_years=20)
         if st is not None:
