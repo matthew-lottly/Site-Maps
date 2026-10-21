@@ -1,0 +1,215 @@
+{
+ "retrieved": "2026-10-21",
+ "layers": [
+  {
+   "layer": "Facility record (name, capacity, fuels, owner, location)",
+   "features": 1,
+   "detail": "record USA0000470; geolocation source in record: U.S. Energy Information Administration",
+   "source": {
+    "key": "WRI",
+    "publisher": "World Resources Institute (Global Power Plant Database)",
+    "dataset": "Global Power Plant Database",
+    "version": "v1.3.0 (WRI states it has not been maintained since early 2022)",
+    "url": "https://github.com/wri/global-power-plant-database",
+    "license": "CC BY 4.0",
+    "note": "Plant attributes are as of the database vintage, not today"
+   }
+  },
+  {
+   "layer": "Power, pipeline and utility features",
+   "features": 28637,
+   "detail": "Overture base/infrastructure (OpenStreetMap-derived) within 22 km of the plant",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Region name",
+   "features": null,
+   "detail": "state/province polygon containing the plant location",
+   "source": {
+    "key": "NE",
+    "publisher": "Natural Earth",
+    "dataset": "Admin 1 \u2013 States, Provinces 1:50m",
+    "version": "GitHub master at retrieval",
+    "url": "https://www.naturalearthdata.com/",
+    "license": "Public domain",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Imagery: Sentinel-2 true colour, 2026-10-09",
+   "features": null,
+   "detail": "scene S2C_13SEC_20261009_0_L2A; TCI at 10 m; window cloud/shadow 0.0%",
+   "source": {
+    "key": "S2",
+    "publisher": "ESA Copernicus (COGs by Element 84)",
+    "dataset": "Sentinel-2 L2A COGs",
+    "version": "scene dates as labelled on the sheet",
+    "url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
+    "license": "free and open; contains modified Copernicus Sentinel data",
+    "note": "Contains modified Copernicus Sentinel data."
+   }
+  },
+  {
+   "layer": "Surface water",
+   "features": 536,
+   "detail": "Overture 'water' type, bounding-box filter, reprojected to EPSG:32613",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Roads and railways",
+   "features": 11578,
+   "detail": "Overture 'segments' type, bounding-box filter, reprojected to EPSG:32613",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Industrial land use",
+   "features": 1754,
+   "detail": "Overture 'land_use' type, bounding-box filter, reprojected to EPSG:32613",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Transmission towers",
+   "features": 500,
+   "detail": "power_tower points inside the map window",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Plant footprint",
+   "features": 1,
+   "detail": "Overture infrastructure feature (power=plant, ref:US:EIA=470), drawn as published; WRI point is 249 m from its centroid",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Substations",
+   "features": 17,
+   "detail": "power=substation features whose centre is inside the map window; names and voltages as tagged",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Plant detail: buildings",
+   "features": 108,
+   "detail": "Overture building footprints intersecting the 2.4 km detail window",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Plant detail: generators, transformers, switches",
+   "features": 18,
+   "detail": "power=generator / transformer / switch features in the detail window, drawn as points",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Land cover within 5 and 20 km",
+   "features": null,
+   "detail": "10 m classes resampled (nearest) to a 30 m grid; shares of pixels inside each radius",
+   "source": {
+    "key": "WC",
+    "publisher": "ESA WorldCover",
+    "dataset": "WorldCover 10 m 2021",
+    "version": "v200, reference year 2021",
+    "url": "https://esa-worldcover.org/",
+    "license": "CC BY 4.0",
+    "note": "Class names and colours read from the GeoTIFF legend and colour table"
+   }
+  },
+  {
+   "layer": "Terrain",
+   "features": null,
+   "detail": "1 arc-second DEM resampled to 30 m; min / mean / max within 5 km of the plant",
+   "source": {
+    "key": "3DEP",
+    "publisher": "U.S. Geological Survey",
+    "dataset": "3D Elevation Program (3DEP) 1 arc-second DEM",
+    "version": "current staged product at retrieval",
+    "url": "https://www.usgs.gov/3d-elevation-program",
+    "license": "Public domain (U.S. Government work)",
+    "note": "Vertical datum NAVD88, horizontal NAD83; bare-earth DEM, ~30 m posting"
+   }
+  },
+  {
+   "layer": "Locator: state boundaries",
+   "features": 294,
+   "detail": "1:50m admin-1 polygons, unmodified",
+   "source": {
+    "key": "NE",
+    "publisher": "Natural Earth",
+    "dataset": "Admin 1 \u2013 States, Provinces 1:50m",
+    "version": "GitHub master at retrieval",
+    "url": "https://www.naturalearthdata.com/",
+    "license": "Public domain",
+    "note": ""
+   }
+  }
+ ]
+}

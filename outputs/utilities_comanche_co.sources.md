@@ -1,0 +1,26 @@
+| Layer | Source | Dataset / version | Features | Processing |
+|---|---|---|---|---|
+| Facility record (name, capacity, fuels, owner, location) | World Resources Institute (Global Power Plant Database) (WRI) | [Global Power Plant Database](https://github.com/wri/global-power-plant-database), v1.3.0 (WRI states it has not been maintained since early 2022) | 1 | record USA0000470; geolocation source in record: U.S. Energy Information Administration |
+| Power, pipeline and utility features | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 28637 | Overture base/infrastructure (OpenStreetMap-derived) within 22 km of the plant |
+| Region name | Natural Earth (NE) | [Admin 1 – States, Provinces 1:50m](https://www.naturalearthdata.com/), GitHub master at retrieval |  | state/province polygon containing the plant location |
+| Imagery: Sentinel-2 true colour, 2026-10-09 | ESA Copernicus (COGs by Element 84) (S2) | [Sentinel-2 L2A COGs](https://registry.opendata.aws/sentinel-2-l2a-cogs/), scene dates as labelled on the sheet |  | scene S2C_13SEC_20261009_0_L2A; TCI at 10 m; window cloud/shadow 0.0% |
+| Surface water | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 536 | Overture 'water' type, bounding-box filter, reprojected to EPSG:32613 |
+| Roads and railways | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 11578 | Overture 'segments' type, bounding-box filter, reprojected to EPSG:32613 |
+| Industrial land use | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 1754 | Overture 'land_use' type, bounding-box filter, reprojected to EPSG:32613 |
+| Transmission towers | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 500 | power_tower points inside the map window |
+| Plant footprint | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 1 | Overture infrastructure feature (power=plant, ref:US:EIA=470), drawn as published; WRI point is 249 m from its centroid |
+| Substations | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 17 | power=substation features whose centre is inside the map window; names and voltages as tagged |
+| Plant detail: buildings | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 108 | Overture building footprints intersecting the 2.4 km detail window |
+| Plant detail: generators, transformers, switches | Overture Maps Foundation (OV) | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/), release 2026-09-23.1 | 18 | power=generator / transformer / switch features in the detail window, drawn as points |
+| Land cover within 5 and 20 km | ESA WorldCover (WC) | [WorldCover 10 m 2021](https://esa-worldcover.org/), v200, reference year 2021 |  | 10 m classes resampled (nearest) to a 30 m grid; shares of pixels inside each radius |
+| Terrain | U.S. Geological Survey (3DEP) | [3D Elevation Program (3DEP) 1 arc-second DEM](https://www.usgs.gov/3d-elevation-program), current staged product at retrieval |  | 1 arc-second DEM resampled to 30 m; min / mean / max within 5 km of the plant |
+| Locator: state boundaries | Natural Earth (NE) | [Admin 1 – States, Provinces 1:50m](https://www.naturalearthdata.com/), GitHub master at retrieval | 294 | 1:50m admin-1 polygons, unmodified |
+
+| Key | Publisher | Dataset | Version | Licence |
+|---|---|---|---|---|
+| WRI | World Resources Institute (Global Power Plant Database) | [Global Power Plant Database](https://github.com/wri/global-power-plant-database) | v1.3.0 (WRI states it has not been maintained since early 2022) | CC BY 4.0 |
+| OV | Overture Maps Foundation | [Overture Maps (places, transportation, base)](https://docs.overturemaps.org/) | release 2026-09-23.1 | ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers © OpenStreetMap contributors) |
+| NE | Natural Earth | [Admin 1 – States, Provinces 1:50m](https://www.naturalearthdata.com/) | GitHub master at retrieval | Public domain |
+| S2 | ESA Copernicus (COGs by Element 84) | [Sentinel-2 L2A COGs](https://registry.opendata.aws/sentinel-2-l2a-cogs/) | scene dates as labelled on the sheet | free and open; contains modified Copernicus Sentinel data |
+| WC | ESA WorldCover | [WorldCover 10 m 2021](https://esa-worldcover.org/) | v200, reference year 2021 | CC BY 4.0 |
+| 3DEP | U.S. Geological Survey | [3D Elevation Program (3DEP) 1 arc-second DEM](https://www.usgs.gov/3d-elevation-program) | current staged product at retrieval | Public domain (U.S. Government work) |
