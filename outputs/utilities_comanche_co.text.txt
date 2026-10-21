@@ -112,7 +112,7 @@ DATA SOURCES
 [S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and ⏎    open; contains modified Copernicus Sentinel data.
 [WC] ESA WorldCover: WorldCover 10 m 2021 (v200, reference year 2021); CC BY 4.0.
 [3DEP] U.S. Geological Survey: 3D Elevation Program (3DEP) 1 arc-second DEM (current staged product at retrieval); ⏎    Public domain (U.S. Government work).
-Prepared 2026-10-21 · site-maps 0.1.0 (21fbffb) · data retrieved 2026-10-21
+Prepared 2026-10-21 · site-maps 0.1.0 (3f50cc1) · data retrieved 2026-10-21
 Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
 Limits: Power, pipeline and substation features are OpenStreetMap contributions carried by Overture, not an engineering or utility record; voltages only as tagged; absence of a feature does not mean absence on the ⏎ ground.  ·  Plant attributes are WRI Global Power Plant Database v1.3.0 (unmaintained since early 2022; Overture's plant tag cites U.S. Energy Information Administration - EIA-860 - 2021).  ·  Land cover: ESA ⏎ WorldCover 2021 (statistics on a 30 m grid).
 WGS 84 / UTM zone 13N (EPSG:32613) · graticule WGS 84
