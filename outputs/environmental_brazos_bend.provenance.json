@@ -11,7 +11,7 @@
     "dataset": "Overture Maps 2026-09-23.1",
     "version": "2026-09-23.1",
     "url": "https://docs.overturemaps.org/",
-    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
     "note": ""
    }
   },
@@ -21,11 +21,11 @@
    "detail": "scene S2C_15RTN_20260321_0_L2A; TCI product at 10 m; window cloud/shadow 0.0%",
    "source": {
     "key": "S2",
-    "publisher": "European Space Agency / Copernicus (processed and hosted by Element 84 on AWS)",
-    "dataset": "Sentinel-2 Level-2A (surface reflectance) COGs",
+    "publisher": "ESA Copernicus (COGs by Element 84)",
+    "dataset": "Sentinel-2 L2A COGs",
     "version": "scene dates as labelled on the sheet",
     "url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
-    "license": "Copernicus Sentinel data, free and open (attribution required)",
+    "license": "free and open; contains modified Copernicus Sentinel data",
     "note": "Contains modified Copernicus Sentinel data."
    }
   },
@@ -35,8 +35,8 @@
    "detail": "10 m classes drawn at 40 % opacity over imagery, only inside the Overture park polygon",
    "source": {
     "key": "WC",
-    "publisher": "ESA WorldCover consortium",
-    "dataset": "ESA WorldCover 10 m 2021 v200",
+    "publisher": "ESA WorldCover",
+    "dataset": "WorldCover 10 m 2021",
     "version": "v200, reference year 2021",
     "url": "https://esa-worldcover.org/",
     "license": "CC BY 4.0",
@@ -53,7 +53,7 @@
     "dataset": "Overture Maps 2026-09-23.1",
     "version": "2026-09-23.1",
     "url": "https://docs.overturemaps.org/",
-    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
     "note": ""
    }
   },
@@ -67,7 +67,7 @@
     "dataset": "Overture Maps 2026-09-23.1",
     "version": "2026-09-23.1",
     "url": "https://docs.overturemaps.org/",
-    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
     "note": ""
    }
   },
@@ -81,7 +81,7 @@
     "dataset": "Overture Maps 2026-09-23.1",
     "version": "2026-09-23.1",
     "url": "https://docs.overturemaps.org/",
-    "license": "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data \u00a9 OpenStreetMap contributors)",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
     "note": ""
    }
   },
@@ -91,11 +91,11 @@
    "detail": "research-grade, positional accuracy \u2264 100 m, inside the map window; taxon group from iNaturalist taxonomy",
    "source": {
     "key": "iNat",
-    "publisher": "iNaturalist (California Academy of Sciences & National Geographic Society)",
-    "dataset": "iNaturalist Open Data on AWS: observations + taxa",
+    "publisher": "iNaturalist",
+    "dataset": "iNaturalist Open Data (observations, taxa)",
     "version": "export dated 2026-09-27",
     "url": "https://registry.opendata.aws/inaturalist-open-data/",
-    "license": "Per-observation Creative Commons licence (CC0, CC-BY, CC-BY-NC); only openly licensed records are in the export",
+    "license": "per-record CC0 / CC-BY / CC-BY-NC",
     "note": ""
    }
   },
@@ -119,11 +119,11 @@
    "detail": "NDVI=(NIR\u2212Red)/(NIR+Red) from B08/B04 surface reflectance (DN\u00d70.0001; the \u22120.1 offset is applied only where a scene's DNs carry it), vegetation/bare-soil pixels per the scene classification layer; mean and 10\u201390 % band over park pixels; scenes S2A_15RTN_20251014_1_L2A, S2A_15RTN_20251103_1_L2A, S2C_15RTN_20251211_0_L2A, S2A_15RTN_20260102_1_L2A, S2A_15RTN_20260204_0_L2A, S2A_15RTN_20260313_1_L2A, S2A_15RTN_20260512_1_L2A, S2A_15RTN_20260731_1_L2A",
    "source": {
     "key": "S2",
-    "publisher": "European Space Agency / Copernicus (processed and hosted by Element 84 on AWS)",
-    "dataset": "Sentinel-2 Level-2A (surface reflectance) COGs",
+    "publisher": "ESA Copernicus (COGs by Element 84)",
+    "dataset": "Sentinel-2 L2A COGs",
     "version": "scene dates as labelled on the sheet",
     "url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
-    "license": "Copernicus Sentinel data, free and open (attribution required)",
+    "license": "free and open; contains modified Copernicus Sentinel data",
     "note": "Contains modified Copernicus Sentinel data."
    }
   },
@@ -133,11 +133,11 @@
    "detail": "THOMPSONS 3 WSW, 12 km from the park centre; 20 complete years in 1991\u20132020; mean daily max/min and mean monthly precipitation computed from daily values",
    "source": {
     "key": "GHCN",
-    "publisher": "NOAA National Centers for Environmental Information",
-    "dataset": "Global Historical Climatology Network \u2013 Daily (GHCN-Daily)",
-    "version": "AWS Open Data snapshot at retrieval",
+    "publisher": "NOAA NCEI",
+    "dataset": "GHCN-Daily",
+    "version": "AWS snapshot at retrieval",
     "url": "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
-    "license": "Public domain (U.S. Government work)",
+    "license": "public domain",
     "note": "Normals computed here from daily values; quality-flagged values removed"
    }
   }

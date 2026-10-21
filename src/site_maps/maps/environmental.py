@@ -153,7 +153,7 @@ class EnvironmentalSiteMap:
         for _, r_ in named.iterrows():
             if r_.geometry.area > 4e4:
                 p_ = r_.geometry.representative_point()
-                ax.text(p_.x, p_.y, r_["name"], fontsize=6.4, style="italic", color="#0C4A6E", ha="center", va="center", zorder=8, path_effects=halo(2.2, "#E0F2FE"))
+                ax.text(p_.x, p_.y, r_["name"], fontsize=5.8, style="italic", color="#0C4A6E", ha="center", va="center", zorder=8, path_effects=halo(2.2, "#E0F2FE"))
 
         # roads and trails
         seg = overture_layer("segments", frame, ["id", "names", "class", "subclass", "road_surface"], prov, "Roads and trails", extra_filter=None, tag="env")
@@ -192,7 +192,7 @@ class EnvironmentalSiteMap:
         sheet.north_arrow()
 
         # --- right column
-        sheet.locator(width_deg=9.0, height_in=1.15)
+        sheet.locator(width_deg=9.0, height_in=1.05)
         lg = Legend("Legend")
         lg.header("Boundary and base")
         lg.line("Park boundary (Overture land_use)", "#B42318", 1.7)
@@ -217,7 +217,7 @@ class EnvironmentalSiteMap:
     def _charts(self, sheet: Sheet, frame, pg, area, obs, base):
         t = sheet.t
         # row 1: land cover bars | observations by group
-        panel = sheet.panel(1.8, "Composition and observations")
+        panel = sheet.panel(1.5, "Composition and observations")
         a1 = sheet.chart_axes(panel, (0.20, 0.17, 0.27, 0.50))
         items = sorted(area.items(), key=lambda kv: kv[1])
         a1.barh([wc.CLASSES[k][0] for k, _ in items], [v for _, v in items], color=[wc.CLASSES[k][1] for k, _ in items], height=0.7, edgecolor="#6B7280", linewidth=0.3)
@@ -230,7 +230,7 @@ class EnvironmentalSiteMap:
         if len(obs):
             a2 = sheet.chart_axes(panel, (0.66, 0.17, 0.28, 0.50))
             cnt = obs[obs.apply(lambda r: pg.buffer(0).contains(__import__("shapely.geometry", fromlist=["Point"]).Point(r["x"], r["y"])), axis=1)]
-            c = cnt.groupby("group").size().sort_values()
+            c = cnt.groupby("group").size().sort_values().tail(8)
             a2.barh(c.index, c.values, color=[GROUP_COLORS.get(g, "#64748B") for g in c.index], height=0.7)
             for i, v in enumerate(c.values):
                 a2.text(v, i, f" {v:,}", va="center", fontsize=5.8, color=t.ink)
@@ -240,7 +240,7 @@ class EnvironmentalSiteMap:
             self.log["observations_in_park"] = int(len(cnt))
             self.log["species_in_park"] = int(cnt["species_name"].nunique())
         # row 2: NDVI series | climograph
-        panel = sheet.panel(1.55, "Vegetation condition and climate")
+        panel = sheet.panel(1.4, "Vegetation condition and climate")
         a3 = sheet.chart_axes(panel, (0.12, 0.20, 0.34, 0.50))
         rows = self.ndvi_series(frame, pg)
         if rows:
@@ -271,7 +271,7 @@ class EnvironmentalSiteMap:
             ax2.tick_params(labelsize=5.8, length=2, colors=t.muted)
             for sp in ("top",):
                 ax2.spines[sp].set_visible(False)
-            a4.set_title(f"{st['name'].title()} ({km:.0f} km)", fontsize=6.4, color=t.ink, loc="left", pad=3)
+            a4.set_title(f"{st['name']} ({km:.0f} km)", fontsize=6.4, color=t.ink, loc="left", pad=3)
             yrs = sorted(set(d.index.year))
             sheet.prov.add(f"Climate normals: GHCN {st['id']}", ghcn.SOURCE, None, f"{st['name']}, {km:.0f} km from the park centre; {len(yrs)} complete years in 1991–2020; mean daily max/min and mean monthly precipitation computed from daily values")
             self.log["climate_station"] = {"id": st["id"], "name": st["name"], "km": km, "years": len(yrs)}

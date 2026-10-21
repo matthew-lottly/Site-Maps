@@ -230,7 +230,7 @@ class Sheet:
         bw, bh = W * 0.07, H * 0.115
         bx, by = x1 - bw - W * 0.012, y1 - bh - H * 0.015
         ax.add_patch(Rectangle((bx, by), bw, bh, fc="white", alpha=0.9, ec=self.t.rule, lw=0.5, zorder=60))
-        cx, cy, r = bx + bw / 2, by + bh * 0.56, bh * 0.27
+        cx, cy, r = bx + bw / 2, by + bh * 0.50, bh * 0.24
         ang = math.radians(fr.convergence_deg())
         rot = lambda dx, dy: (cx + dx * math.cos(ang) - dy * math.sin(ang), cy + dx * math.sin(ang) + dy * math.cos(ang))
         ax.add_patch(MplPolygon([rot(0, r * 1.2), rot(-r * 0.5, -r * 0.8), rot(0, -r * 0.3)], closed=True, fc=self.t.ink, ec=self.t.ink, lw=0.6, zorder=61))
@@ -363,17 +363,17 @@ class Sheet:
             lines.append(f"[{s_.key}] {s_.publisher}: {s_.dataset} ({s_.version}); {s_.license}.")
         lines += [note] if note else []
         avail = self.remaining_in()
-        for fs, chars in ((5.6, 98), (5.2, 106), (4.8, 114), (4.5, 122)):
+        for fs, chars in ((5.6, 107), (5.2, 115), (4.9, 123), (4.6, 131)):
             wrapped = [textwrap.fill(x, chars, subsequent_indent="   ") for x in lines]
             n = sum(w.count("\n") + 1 for w in wrapped)
-            need = 0.26 + 0.1 + n * fs * 0.0185 + 0.03 * len(wrapped)
+            need = 0.26 + 0.1 + n * fs * 0.0172 + 0.03 * len(wrapped)
             if need <= avail:
                 break
         ax = self.panel(min(need, avail), title)
         y = 1 - (0.26 + 0.08) / min(need, avail)
         for w in wrapped:
             ax.text(0.03, y, w, fontsize=fs, color=self.t.ink, va="top", transform=ax.transAxes, linespacing=1.22)
-            y -= ((w.count("\n") + 1) * fs * 0.0185 + 0.03) / min(need, avail)
+            y -= ((w.count("\n") + 1) * fs * 0.0172 + 0.03) / min(need, avail)
         return ax
 
     def footer(self):

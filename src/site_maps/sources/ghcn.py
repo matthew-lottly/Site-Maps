@@ -10,8 +10,8 @@ from ..core.cache import download
 from ..core.provenance import Source
 
 BASE = "https://noaa-ghcn-pds.s3.amazonaws.com"
-SOURCE = Source("GHCN", "NOAA National Centers for Environmental Information", "Global Historical Climatology Network – Daily (GHCN-Daily)", "AWS Open Data snapshot at retrieval",
-                "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily", "Public domain (U.S. Government work)",
+SOURCE = Source("GHCN", "NOAA NCEI", "GHCN-Daily", "AWS snapshot at retrieval",
+                "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily", "public domain",
                 "Normals computed here from daily values; quality-flagged values removed")
 
 

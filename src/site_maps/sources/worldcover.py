@@ -10,7 +10,7 @@ from ..core.provenance import Source
 from .rasters import Grid, read_to_grid
 from rasterio.enums import Resampling
 
-SOURCE = Source("WC", "ESA WorldCover consortium", "ESA WorldCover 10 m 2021 v200", "v200, reference year 2021", "https://esa-worldcover.org/", "CC BY 4.0",
+SOURCE = Source("WC", "ESA WorldCover", "WorldCover 10 m 2021", "v200, reference year 2021", "https://esa-worldcover.org/", "CC BY 4.0",
                 "Class names and colours as in the WorldCover v200 Product User Manual")
 CLASSES = {10: ("Tree cover", "#006400"), 20: ("Shrubland", "#FFBB22"), 30: ("Grassland", "#FFFF4C"), 40: ("Cropland", "#F096FF"), 50: ("Built-up", "#FA0000"),
            60: ("Bare / sparse vegetation", "#B4B4B4"), 70: ("Snow and ice", "#F0F0F0"), 80: ("Permanent water bodies", "#0064C8"), 90: ("Herbaceous wetland", "#0096A0"),
