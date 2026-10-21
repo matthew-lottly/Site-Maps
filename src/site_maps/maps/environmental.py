@@ -17,6 +17,7 @@ from ..core.labels import LabelPlacer
 from ..core.layout import Legend, Sheet, halo
 from ..core.place import context as place_context
 from ..core.provenance import ProvenanceLog
+from ..sources.inat import GROUPS, GROUP_COLORS
 from ..sources import dem as demsrc, ghcn, inat, overture as ov, sentinel2 as s2, worldcover as wc
 from ..sources.rasters import Grid, hillshade
 from .base import clip_to_frame, label_lines, mask_outside, overture_layer, raster_extent
@@ -25,10 +26,6 @@ SITE_ID = "adb37d48-f604-3b63-b9b0-099010f527b9"            # Overture land_use 
 SITE_NAME = "Brazos Bend State Park"
 SITE_BOX = (-96.0, 29.0, -95.2, 29.7)                       # search window used only to fetch the feature by id
 INAT_BOX = "brazos_bend"
-GROUPS = {"Aves": "Birds", "Reptilia": "Reptiles", "Amphibia": "Amphibians", "Mammalia": "Mammals", "Actinopterygii": "Fishes", "Insecta": "Insects", "Arachnida": "Arachnids",
-          "Plantae": "Plants", "Fungi": "Fungi", "Mollusca": "Molluscs"}
-GROUP_COLORS = {"Birds": "#1D4ED8", "Reptiles": "#B45309", "Amphibians": "#0E7490", "Mammals": "#7C2D12", "Fishes": "#0369A1", "Insects": "#C026D3", "Arachnids": "#9D174D",
-                "Plants": "#15803D", "Fungi": "#6D28D9", "Molluscs": "#475569", "Other": "#64748B"}
 
 
 class EnvironmentalSiteMap:
@@ -54,22 +51,9 @@ class EnvironmentalSiteMap:
         o = o[(o["quality_grade"] == "research") & (o["positional_accuracy"].fillna(1e9) <= 100)]
         w, s, e, n = frame.padded_bounds_ll(0.0)
         o = o[(o["longitude"].between(w, e)) & (o["latitude"].between(s, n))].copy()
-        t = inat.taxa()
-        ids = {name: int(t[(t["name"] == name) & (t["active"]) & (t["rank"].isin(["class", "kingdom", "phylum"]))]["taxon_id"].iloc[0]) for name in GROUPS if ((t["name"] == name) & t["active"]).any()}
-        anc = t.set_index("taxon_id")["ancestry"].to_dict()
-        id2group = {v: GROUPS[k] for k, v in ids.items()}
-
-        def group(tid):
-            chain = [int(x) for x in str(anc.get(tid, "")).split("/") if x.isdigit()] + [tid]
-            for c in reversed(chain):
-                if c in id2group:
-                    return id2group[c]
-            return "Other"
-
-        o["group"] = o["taxon_id"].map(group)
+        o = inat.add_groups(o)
         xs, ys = frame.to_proj.transform(o["longitude"].to_numpy(), o["latitude"].to_numpy())
         o["x"], o["y"] = xs, ys
-        o["species_name"] = o["taxon_id"].map(t.set_index("taxon_id")["name"].to_dict())
         return o
 
     def ndvi_series(self, frame: SiteFrame, park_geom, start=dt.date(2025, 10, 1), end=dt.date(2026, 10, 15)):

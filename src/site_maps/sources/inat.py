@@ -42,6 +42,32 @@ def extract(boxes: dict[str, tuple[float, float, float, float]], chunk_rows: int
     return {k: str(cache_path(f"inat/{k}.csv")) for k in boxes}
 
 
+GROUPS = {"Aves": "Birds", "Reptilia": "Reptiles", "Amphibia": "Amphibians", "Mammalia": "Mammals", "Actinopterygii": "Fishes", "Insecta": "Insects", "Arachnida": "Arachnids",
+          "Plantae": "Plants", "Fungi": "Fungi", "Mollusca": "Molluscs"}
+GROUP_COLORS = {"Birds": "#1D4ED8", "Reptiles": "#B45309", "Amphibians": "#0E7490", "Mammals": "#7C2D12", "Fishes": "#0369A1", "Insects": "#C026D3", "Arachnids": "#9D174D",
+                "Plants": "#15803D", "Fungi": "#6D28D9", "Molluscs": "#475569", "Other": "#64748B"}
+
+
+def add_groups(o: pd.DataFrame) -> pd.DataFrame:
+    """Add `group` (broad taxon group from the iNaturalist taxonomy) and `species_name` to an observation table."""
+    t = taxa()
+    ids = {name: int(t[(t["name"] == name) & (t["active"]) & (t["rank"].isin(["class", "kingdom", "phylum"]))]["taxon_id"].iloc[0]) for name in GROUPS if ((t["name"] == name) & t["active"]).any()}
+    anc = t.set_index("taxon_id")["ancestry"].to_dict()
+    id2group = {v: GROUPS[k] for k, v in ids.items()}
+
+    def group(tid):
+        chain = [int(x) for x in str(anc.get(tid, "")).split("/") if x.isdigit()] + [tid]
+        for c in reversed(chain):
+            if c in id2group:
+                return id2group[c]
+        return "Other"
+
+    o = o.copy()
+    o["group"] = o["taxon_id"].map(group)
+    o["species_name"] = o["taxon_id"].map(t.set_index("taxon_id")["name"].to_dict())
+    return o
+
+
 def taxa() -> pd.DataFrame:
     p = download(f"{BASE}/taxa.csv.gz", "inat/taxa.csv.gz")
     gz = open(p, "rb").read(2) == b"\x1f\x8b"                  # the HTTP layer may already have undone the gzip
