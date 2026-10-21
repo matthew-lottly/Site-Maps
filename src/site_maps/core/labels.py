@@ -16,7 +16,10 @@ class LabelPlacer:
         self.boxes: list[tuple[float, float, float, float]] = []
 
     def _renderer(self):
-        self.fig.canvas.draw()
+        # one full draw to fix the layout, then reuse the renderer: text extents do not need a redraw per candidate
+        if not getattr(self, "_drawn", False):
+            self.fig.canvas.draw()
+            self._drawn = True
         return self.fig.canvas.get_renderer()
 
     def reserve_texts(self, texts=None):
