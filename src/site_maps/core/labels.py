@@ -50,7 +50,7 @@ class LabelPlacer:
         kw.setdefault("zorder", 50)
         r = self._renderer()
         for dx, dy, ha, va in offsets:
-            t = self.ax.annotate(text, (x, y), xytext=(dx, dy), textcoords="offset points", ha=ha, va=va, path_effects=[pe.withStroke(linewidth=halo_w, foreground=halo_color)], **kw)
+            t = self.ax.annotate(text, (x, y), xytext=(dx, dy), textcoords="offset points", ha=ha, va=va, bbox=dict(boxstyle='round,pad=0.18', fc='white', ec='#CBD2D9', lw=0.4, alpha=0.93), **kw)
             bb = t.get_window_extent(r)
             if self._free(bb):
                 self.boxes.append((bb.x0, bb.y0, bb.x1, bb.y1))
@@ -63,7 +63,7 @@ class LabelPlacer:
         kw.setdefault("fontsize", 6.5)
         kw.setdefault("zorder", 50)
         r = self._renderer()
-        t = self.ax.text(x, y, text, ha="center", va="center", rotation=rotation, rotation_mode="anchor", path_effects=[pe.withStroke(linewidth=halo_w, foreground=halo_color)], **kw)
+        t = self.ax.text(x, y, text, ha="center", va="center", rotation=rotation, rotation_mode="anchor", bbox=dict(boxstyle='round,pad=0.16', fc='white', ec='none', alpha=0.93), **kw)
         bb = t.get_window_extent(r)
         if self._free(bb):
             self.boxes.append((bb.x0, bb.y0, bb.x1, bb.y1))

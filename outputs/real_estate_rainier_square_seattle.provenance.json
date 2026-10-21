@@ -45,7 +45,7 @@
   },
   {
    "layer": "Land use (OpenStreetMap-derived)",
-   "features": 1163,
+   "features": 1560,
    "detail": "Overture 'land_use' type, bounding-box filter, reprojected to EPSG:32610",
    "source": {
     "key": "OV",
@@ -59,7 +59,7 @@
   },
   {
    "layer": "Building footprints",
-   "features": 15421,
+   "features": 26616,
    "detail": "Overture 'buildings' type, bounding-box filter, reprojected to EPSG:32610",
    "source": {
     "key": "OV",
@@ -73,7 +73,7 @@
   },
   {
    "layer": "Streets (by road class, speed limits where tagged)",
-   "features": 18754,
+   "features": 25269,
    "detail": "Overture 'segments' type, bounding-box filter, reprojected to EPSG:32610",
    "source": {
     "key": "OV",
@@ -87,7 +87,7 @@
   },
   {
    "layer": "Places (businesses and facilities)",
-   "features": 14418,
+   "features": 15543,
    "detail": "Overture 'places' type, bounding-box filter, reprojected to EPSG:32610; kept open places with confidence \u2265 0.7",
    "source": {
     "key": "OV",
@@ -101,8 +101,8 @@
   },
   {
    "layer": "Population density",
-   "features": 7233,
-   "detail": "tile v1/cog_globallat_40_lon_-130_general-v1.1.tif; cells with centre inside each ring summed; 7,233 populated cells in the window",
+   "features": 12214,
+   "detail": "tile v1/cog_globallat_40_lon_-130_general-v1.1.tif; cells with centre inside each ring summed; 12,214 populated cells in the window",
    "source": {
     "key": "HRSL",
     "publisher": "Meta Data for Good / CIESIN (Columbia University)",

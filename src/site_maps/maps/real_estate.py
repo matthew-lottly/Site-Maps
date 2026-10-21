@@ -30,7 +30,7 @@ GROUPS = {"services_and_business": "Services & business", "shopping": "Shopping"
 MAP_GROUPS = {"shopping": "#B45309", "food_and_drink": "#BE123C", "lodging": "#6D28D9", "health_care": "#0F766E"}
 LAND_USE = {"retail": ("Retail", "#FDBA74"), "commercial": ("Commercial", "#FCA5A5"), "residential": ("Residential", "#FDE68A"), "industrial": ("Industrial", "#C4B5FD"),
             "park": ("Park", "#86EFAC"), "recreation": ("Recreation / golf", "#BBF7D0"), "education": ("Education", "#93C5FD")}
-ROAD_STYLE = {"motorway": (3.0, "#7F1D1D"), "trunk": (2.6, "#9A3412"), "primary": (2.2, "#B45309"), "secondary": (1.7, "#6B7280"), "tertiary": (1.2, "#6B7280"),
+ROAD_STYLE = {"motorway": (2.0, "#7F1D1D"), "trunk": (1.8, "#9A3412"), "primary": (1.5, "#B45309"), "secondary": (1.2, "#6B7280"), "tertiary": (0.8, "#6B7280"),
               "residential": (0.6, "#9CA3AF"), "unclassified": (0.6, "#9CA3AF"), "service": (0.35, "#CBD5E1")}
 
 
@@ -48,7 +48,7 @@ class RealEstateSiteMap:
         s = b[b["id"] == SITE_ID]
         assert len(s) == 1 and s.iloc[0]["name"] == SITE_NAME, "site building not found in the pinned Overture release"
         c = s.geometry.iloc[0].centroid
-        frame = SiteFrame.around(c.x, c.y, 4300, Sheet.map_aspect())
+        frame = SiteFrame.around(c.x, c.y, 5300, Sheet.map_aspect())
         site = s.to_crs(frame.crs).iloc[0]
         sg = site.geometry
         cen = sg.centroid
@@ -100,15 +100,15 @@ class RealEstateSiteMap:
         cmap = matplotlib.colormaps["YlOrBr"]
         h = bld["height"]
         known = bld[h.notna()]
-        known.plot(ax=ax, color=[cmap(norm(min(v, 150))) for v in known["height"]], ec="#374151", lw=0.12, zorder=5)
-        bld[h.isna()].plot(ax=ax, fc="#E5E7EB", ec="#374151", lw=0.12, zorder=5)
+        known.plot(ax=ax, color=[cmap(norm(min(v, 150))) for v in known["height"]], ec="#374151", lw=0.0, zorder=5)
+        bld[h.isna()].plot(ax=ax, fc="#E5E7EB", ec="#374151", lw=0.0, zorder=5)
         gpd.GeoSeries([sg], crs=frame.crs).plot(ax=ax, fc="#DC2626", ec="white", lw=1.6, zorder=9)
         gpd.GeoSeries([sg], crs=frame.crs).boundary.plot(ax=ax, color="#7F1D1D", lw=0.8, zorder=9.1)
 
         # streets
         seg = overture_layer("segments", frame, ["id", "names", "class", "subclass", "speed_limits"], prov, "Streets (by road class, speed limits where tagged)", tag="re")
         seg_c = clip_to_frame(seg, frame)
-        for cls in ["service", "unclassified", "residential", "tertiary", "secondary", "primary", "trunk", "motorway"]:
+        for cls in ["tertiary", "secondary", "primary", "trunk", "motorway"]:
             sub = seg_c[seg_c["class"] == cls]
             if len(sub):
                 lw, col = ROAD_STYLE[cls]
@@ -175,7 +175,7 @@ class RealEstateSiteMap:
         lg.patch("No height", "#E5E7EB")
         lg.patch("Subject", "#DC2626")
         lg.header("Streets (by class)")
-        for c_, lbl in (("motorway", "Motorway"), ("primary", "Primary"), ("secondary", "Secondary"), ("residential", "Residential")):
+        for c_, lbl in (("motorway", "Motorway"), ("primary", "Primary"), ("secondary", "Secondary"), ("tertiary", "Tertiary")):
             lg.line(lbl, ROAD_STYLE[c_][1], ROAD_STYLE[c_][0])
         lg.header("Land use (OSM-derived, 30 % opacity)")
         present = [k for k in LAND_USE if (lu["lu"] == k).any()]

@@ -181,7 +181,7 @@ class EnvironmentalSiteMap:
         obs = self.observations(frame, pg)
         if len(obs):
             for g, gdf in obs.groupby("group"):
-                ax.scatter(gdf["x"], gdf["y"], s=4.5, c=GROUP_COLORS.get(g, "#64748B"), edgecolors="white", linewidths=0.15, alpha=0.85, zorder=15)
+                ax.scatter(gdf["x"], gdf["y"], s=2.2, c=GROUP_COLORS.get(g, "#64748B"), edgecolors="none", linewidths=0, alpha=0.7, zorder=15)
             prov.add("Field observations (research grade)", inat.SOURCE, len(obs), "research-grade, positional accuracy ≤ 100 m, inside the map window; taxon group from iNaturalist taxonomy")
         self.log["observations_in_window"] = int(len(obs))
 
