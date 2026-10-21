@@ -1,0 +1,131 @@
+{
+ "retrieved": "2026-10-21",
+ "layers": [
+  {
+   "layer": "Site anchor: Massachusetts Bay",
+   "features": 1,
+   "detail": "Overture water feature 2f309763-10f2-3b98-b2fc-d8444ea81852 (physical / bay); the frame is centred on it and sized to the largest window inside the CUDEM tile coverage (77 km)",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Seafloor relief and topography",
+   "features": null,
+   "detail": "12 tiles (8 at 1/9 and 4 at 1/3 arc-second) averaged onto a 60 m grid; hillshade az 315\u00b0, 6x vertical exaggeration; depth ramp 0\u2013163 m",
+   "source": {
+    "key": "CUDEM",
+    "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+    "dataset": "Continuously Updated DEM (CUDEM): 1/9 and 1/3 arc-second bathymetric-topographic tiles",
+    "version": "tiles generated 2021 (version in each tile name)",
+    "url": "https://doi.org/10.3390/rs15061702",
+    "license": "Public domain (NOAA); Amante et al. 2023, Remote Sensing 15(6):1702",
+    "note": "NAVD88 heights; land RMSE 0.76 m vs ICESat-2 (Amante et al. 2023); offshore accuracy not stated per tile"
+   }
+  },
+  {
+   "layer": "Land imagery (shown only where CUDEM elevation is at or above 0 m)",
+   "features": 2,
+   "detail": "true-colour product, S2B_19TCG_20261015_0_L2A (window cloud 0.0%); S2B_19TCH_20261015_0_L2A (window cloud 0.0%)",
+   "source": {
+    "key": "S2",
+    "publisher": "ESA Copernicus (COGs by Element 84)",
+    "dataset": "Sentinel-2 L2A COGs",
+    "version": "scene dates as labelled on the sheet",
+    "url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
+    "license": "free and open; contains modified Copernicus Sentinel data",
+    "note": "Contains modified Copernicus Sentinel data."
+   }
+  },
+  {
+   "layer": "GOMOFS surface nowcast",
+   "features": 10591,
+   "detail": "file gomofs.t00z.20261021.2ds.n006.nc; cycle 20261021 t00z; valid 2026-10-21 00:00 UTC; u/v averaged to cell centres and rotated by the grid angle; arrows on a 5 km grid taken from the nearest model cell",
+   "source": {
+    "key": "OFS",
+    "publisher": "NOAA National Ocean Service, Coast Survey Development Laboratory",
+    "dataset": "GOMOFS operational nowcast, 2-D surface fields (ROMS)",
+    "version": "cycle shown on the sheet",
+    "url": "https://registry.opendata.aws/noaa-nos-cora/",
+    "license": "Public domain (U.S. Government work)",
+    "note": "Model output, not observation"
+   }
+  },
+  {
+   "layer": "Marine species occurrences",
+   "features": 911992,
+   "detail": "records inside the frame with absence and OBIS-dropped records removed; class from the record; seafloor depth sampled from the CUDEM grid at each point",
+   "source": {
+    "key": "OBIS",
+    "publisher": "Ocean Biodiversity Information System (UNESCO-IOC)",
+    "dataset": "OBIS Occurrence Data (GeoParquet export)",
+    "version": "export of 25 March 2025 (data to 2025-12-31 per STAC item)",
+    "url": "https://doi.org/10.25607/obis.occurrence.b89117cd",
+    "license": "CC BY-NC 4.0 (per STAC item); records keep their data-provider licences",
+    "note": "Records flagged dropped or absence are excluded"
+   }
+  },
+  {
+   "layer": "Place names: water features",
+   "features": 20985,
+   "detail": "Overture 'water' type, bounding-box filter, reprojected to EPSG:32619",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Place names: land features",
+   "features": 58529,
+   "detail": "Overture 'land' type, bounding-box filter, reprojected to EPSG:32619",
+   "source": {
+    "key": "OV",
+    "publisher": "Overture Maps Foundation",
+    "dataset": "Overture Maps (places, transportation, base)",
+    "version": "release 2026-09-23.1",
+    "url": "https://docs.overturemaps.org/",
+    "license": "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers \u00a9 OpenStreetMap contributors)",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Locator: state boundaries",
+   "features": 294,
+   "detail": "1:50m admin-1 polygons, unmodified",
+   "source": {
+    "key": "NE",
+    "publisher": "Natural Earth",
+    "dataset": "Admin 1 \u2013 States, Provinces 1:50m",
+    "version": "GitHub master at retrieval",
+    "url": "https://www.naturalearthdata.com/",
+    "license": "Public domain",
+    "note": ""
+   }
+  },
+  {
+   "layer": "Sea-surface temperature series (OISST)",
+   "features": 12,
+   "detail": "mean of valid 0.25\u00b0 ocean cells inside the frame; 15th of each month; comparison range from the same calendar day in 2016 onwards; final files only",
+   "source": {
+    "key": "OISST",
+    "publisher": "NOAA National Centers for Environmental Information",
+    "dataset": "Daily Optimum Interpolation SST (OISST) v2.1, AVHRR-only, 0.25\u00b0 grid",
+    "version": "daily files; dates on the sheet",
+    "url": "https://www.ncei.noaa.gov/products/optimum-interpolation-sst",
+    "license": "Public domain (U.S. Government work)",
+    "note": "Satellite + in-situ blended analysis; a recent file may be the preliminary version where no final file exists yet"
+   }
+  }
+ ]
+}

@@ -108,3 +108,51 @@ def window_quality(scene: Scene, frame: SiteFrame, res: float = 60.0) -> tuple[f
     cov = float(covered.mean())
     cloud = float(np.isin(scl, (1, 3, 8, 9, 10)).sum() / max(covered.sum(), 1))
     return cov, cloud
+
+
+def tiles_for_frame(frame: SiteFrame) -> list[tuple[str, str, str]]:
+    w, s, e, n = frame.bounds_ll
+    pts = [(w, s), (w, n), (e, s), (e, n), frame.center, ((w + e) / 2, s), ((w + e) / 2, n), (w, (s + n) / 2), (e, (s + n) / 2)]
+    return sorted({tile_for(lo, la) for lo, la in pts})
+
+
+def best_scene_per_tile(frame: SiteFrame, start: dt.date, end: dt.date, max_scene_cloud: float = 40.0) -> list[tuple[Scene, float, float]]:
+    """For each MGRS tile touching the frame: the scene with the least cloud/shadow inside the window, among scenes that cover the window as fully as the
+    best-covering scene does. Returns [(scene, window coverage, window cloud fraction)]."""
+    out = []
+    for z, band, sq in tiles_for_frame(frame):
+        lon, lat = _tile_probe(frame, (z, band, sq))
+        cands = []
+        for sc in scenes(lon, lat, start, end):
+            if sc.cloud > max_scene_cloud:
+                continue
+            cov, cl = window_quality(sc, frame, res=120.0)
+            cands.append((sc, cov, cl))
+        if not cands:
+            continue
+        cmax = max(c[1] for c in cands)
+        good = [c for c in cands if c[1] >= cmax - 0.02]
+        out.append(min(good, key=lambda c: (round(c[2], 3), -c[0].date.toordinal())))
+    return out
+
+
+def _tile_probe(frame: SiteFrame, tile: tuple[str, str, str]) -> tuple[float, float]:
+    """A lon/lat inside the frame that falls in `tile` (used to list that tile's scenes)."""
+    w, s, e, n = frame.bounds_ll
+    for fx in np.linspace(0.05, 0.95, 10):
+        for fy in np.linspace(0.05, 0.95, 10):
+            lo, la = w + fx * (e - w), s + fy * (n - s)
+            if tile_for(lo, la) == tile:
+                return lo, la
+    return frame.center
+
+
+def true_color_mosaic(frame: SiteFrame, picks: list[Scene], res: float = 40.0):
+    """Composite of the picked scenes' true-colour product on the frame grid (first scene wins where it has data)."""
+    grid = Grid.for_frame(frame, res)
+    out = None
+    for sc in picks:
+        rgb, _ = true_color(sc, frame, res)
+        valid = rgb.max(axis=2) > 0
+        out = rgb if out is None else np.where(valid[..., None], rgb, out) if False else np.where((out.max(axis=2) > 0)[..., None], out, rgb)
+    return out, grid

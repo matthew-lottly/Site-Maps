@@ -1,0 +1,152 @@
+Massachusetts Bay, Massachusetts
+Coastal and sea research site map · seafloor relief, shoreline imagery, model surface currents, sea-surface temperature and marine species records
+42.3751° N  70.7495° W  ·  frame 77 km wide
+WGS 84 / UTM zone 19N (EPSG:32619)
+20 m
+40 m
+60 m
+A
+B
+71.2°W
+71.0°W
+70.8°W
+70.6°W
+70.4°W
+42.2°N
+42.4°N
+42.6°N
+0
+2.5
+5
+7.5
+10
+km
+1:280,383 at 17×11 in
+N
+grid N 1.2° W of true N
+Aldridge Ledge
+Andrus Island
+Apple Island
+Archer Rock
+Arethusa Island
+Babson Ledge
+Bakers Island
+Bartletts Island
+Bass Rock
+Bates Rock
+Bear Island
+Bemo Ledge
+Black Rock
+Boohoo Ledge
+Brimbles
+Bryant Point
+Buck Rock
+Bull Island
+Burnham Rocks
+Carrigain Island
+Caswell Rock
+Cat Island
+Cedar Point
+Childrens Island
+Chubb Island
+Chubb Islet
+Commissioners Ledge
+Cormorant Rock
+Cove Ledge
+Crow Island Rock
+Crow Point
+Dolphin Rock
+Dread Ledge
+East Hogshead Rock
+Finns Ledge
+LOCATOR
+MASSACHUSETTS
+LEGEND
+Seafloor depth (m below NAVD88)
+Depth contours (10, 20, 40, 60, 80, 100, 150 m)
+0 m NAVD88
+CUDEM, hillshaded
+m
+Overlays · GOMOFS currents, nowcast 2026-10-21 00:00 UTC
+arrow: 0.25 m/s drawn 3.5 km long
+A nearest land cell · B deepest cell
+OBIS records, n=911,992 (colours: chart)
+20
+40
+60
+80
+100
+120
+140
+160
+180
+SEAFLOOR PROFILE A–B
+distance from A (km)
+15
+25
+elevation (m)
+−150
+A to B 26.0 km · deepest -198 m · max slope 14.3° (60 m cells)
+DEPTH ZONES AND HYPSOMETRY
+164
+1,032
+1,190
+431
+500
+1000
+1500
+> 100
+60–100
+20–60
+0–20
+Sea area by depth (km², depth in m)
+area deeper (km²)
+depth (m)
+Hypsometric curve
+SPECIES RECORDS
+5,570
+7,083
+11,019
+25,652
+856,832
+Bivalves
+Crustaceans
+Marine mammals
+Birds
+Other
+By class group (log scale)
+2,095
+847,749
+17,789
+14,653
+>100
+By seafloor depth, m (n=882,286)
+SEA-SURFACE TEMPERATURE
+Oct
+Dec
+Feb
+Apr
+Jun
+Aug
+°C
+8
+16
+OISST monthly (red) vs 2016– range
+13.5
+14.0
+14.5
+15.0
+model cells
+GOMOFS surface temp
+DATA SOURCES
+[OV] Overture Maps Foundation: Overture Maps (places, transportation, base) (release 2026-09-23.1); ODbL 1.0 / CDLA-Permissive-2.0 ⏎    (OSM-derived layers © OpenStreetMap contributors).
+[CUDEM] NOAA National Centers for Environmental Information (NCEI): Continuously Updated DEM (CUDEM): 1/9 and 1/3 arc-second ⏎    bathymetric-topographic tiles (tiles generated 2021 (version in each tile name)); Public domain (NOAA); Amante et al. 2023, ⏎    Remote Sensing 15(6):1702.
+[S2] ESA Copernicus (COGs by Element 84): Sentinel-2 L2A COGs (scene dates as labelled on the sheet); free and open; contains ⏎    modified Copernicus Sentinel data.
+[OFS] NOAA National Ocean Service, Coast Survey Development Laboratory: GOMOFS operational nowcast, 2-D surface fields (ROMS) ⏎    (cycle shown on the sheet); Public domain (U.S. Government work).
+[OBIS] Ocean Biodiversity Information System (UNESCO-IOC): OBIS Occurrence Data (GeoParquet export) (export of 25 March 2025 (data ⏎    to 2025-12-31 per STAC item)); CC BY-NC 4.0 (per STAC item); records keep their data-provider licences.
+[NE] Natural Earth: Admin 1 – States, Provinces 1:50m (GitHub master at retrieval); Public domain.
+[OISST] NOAA National Centers for Environmental Information: Daily Optimum Interpolation SST (OISST) v2.1, AVHRR-only, 0.25° grid ⏎    (daily files; dates on the sheet); Public domain (U.S. Government work).
+Prepared 2026-10-21 · site-maps 0.1.0 (e0c9ae6) · data retrieved 2026-10-21
+Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.
+Limits: Depths are gridded NAVD88 heights, not a nautical chart and not for navigation.  ·  Model currents and temperature are a forecast-system nowcast, not measurements.  ·  Species records are presence records; ⏎ density reflects observer effort as well as abundance.  ·  The 0 m NAVD88 line is not the shoreline.
+WGS 84 / UTM zone 19N (EPSG:32619) · graticule WGS 84
