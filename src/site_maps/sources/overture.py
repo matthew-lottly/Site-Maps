@@ -14,8 +14,8 @@ from ..core.provenance import Source
 
 RELEASE = "2026-09-23.1"
 S3_PATH = f"overturemaps-us-west-2/release/{RELEASE}"
-SOURCE = Source("OV", "Overture Maps Foundation", f"Overture Maps {RELEASE}", RELEASE, "https://docs.overturemaps.org/",
-                "ODbL / CDLA-Permissive-2.0 per theme; see source tags (OpenStreetMap data © OpenStreetMap contributors)")
+SOURCE = Source("OV", "Overture Maps Foundation", "Overture Maps (places, transportation, base)", f"release {RELEASE}", "https://docs.overturemaps.org/",
+                "ODbL 1.0 / CDLA-Permissive-2.0 (OSM-derived layers © OpenStreetMap contributors)")
 
 THEMES = {"places": "theme=places/type=place", "segments": "theme=transportation/type=segment", "buildings": "theme=buildings/type=building",
           "land_use": "theme=base/type=land_use", "land": "theme=base/type=land", "water": "theme=base/type=water", "infrastructure": "theme=base/type=infrastructure",

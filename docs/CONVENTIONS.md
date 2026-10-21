@@ -39,3 +39,13 @@ product defines them (e.g. ESA WorldCover).
 
 Pure-logic tests only (no network): geometry, unit conversions, classification, parsing of dataset records. Network-dependent builds are
 verified by running `python -m site_maps <map>` and checking `issues == []` and the printed `log`.
+
+## Audits that run on every export
+
+- **Layout audit** (`core/qa.py`): no text may overlap other text, leave the page or leave its panel. `export()['issues']` must be `[]`.
+- **Text inventory** (`<stem>.text.txt`): every string printed on the sheet. Each must come from a dataset field (names exactly as published) or a
+  computed value; reviewers can check the file against `<stem>.provenance.json`.
+- **Collision-aware labels** (`core/labels.py` `LabelPlacer`): place point, area and line labels in priority order; labels that cannot be placed are
+  dropped instead of overprinting. Reserve furniture (scale bar, north arrow) before placing.
+- **No typed place facts**: state / province / country names come from `core/place.py` (Natural Earth admin-1 polygons), class names and colours
+  from the product files themselves (`sources/worldcover.classes()` reads the GeoTIFF legend and colour table).

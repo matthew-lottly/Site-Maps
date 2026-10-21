@@ -10,11 +10,28 @@ from ..core.provenance import Source
 from .rasters import Grid, read_to_grid
 from rasterio.enums import Resampling
 
-SOURCE = Source("WC", "ESA WorldCover consortium", "ESA WorldCover 10 m 2021 v200", "v200, reference year 2021", "https://esa-worldcover.org/", "CC BY 4.0",
-                "Class names and colours as in the WorldCover v200 Product User Manual")
-CLASSES = {10: ("Tree cover", "#006400"), 20: ("Shrubland", "#FFBB22"), 30: ("Grassland", "#FFFF4C"), 40: ("Cropland", "#F096FF"), 50: ("Built-up", "#FA0000"),
-           60: ("Bare / sparse vegetation", "#B4B4B4"), 70: ("Snow and ice", "#F0F0F0"), 80: ("Permanent water bodies", "#0064C8"), 90: ("Herbaceous wetland", "#0096A0"),
-           95: ("Mangroves", "#00CF75"), 100: ("Moss and lichen", "#FAE6A0")}
+SOURCE = Source("WC", "ESA WorldCover", "WorldCover 10 m 2021", "v200, reference year 2021", "https://esa-worldcover.org/", "CC BY 4.0",
+                "Class names and colours read from the GeoTIFF legend and colour table")
+_CLASSES = None
+
+
+def classes() -> dict[int, tuple[str, str]]:
+    """Class code -> (name, colour), read from the product itself: the GeoTIFF's embedded colour table and its `legend` tag."""
+    global _CLASSES
+    if _CLASSES is None:
+        import rasterio
+
+        from .rasters import remote_env
+
+        with remote_env(), rasterio.open(tile_urls((-95.6, 29.4, -95.5, 29.5))[0]) as src:
+            cm, legend = src.colormap(1), src.tags()["legend"]
+        out = {}
+        for line in legend.strip().splitlines():
+            code, name = line.split(None, 1)
+            r, g, b, _ = cm[int(code)]
+            out[int(code)] = (name.strip().replace("Bare/sparse", "Bare / sparse"), "#%02X%02X%02X" % (r, g, b))
+        _CLASSES = out
+    return _CLASSES
 
 
 def tile_urls(bounds) -> list[str]:

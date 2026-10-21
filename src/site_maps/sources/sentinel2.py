@@ -16,8 +16,8 @@ from ..core.provenance import Source
 from .rasters import Grid, read_to_grid
 
 BASE = "https://sentinel-cogs.s3.us-west-2.amazonaws.com"
-SOURCE = Source("S2", "European Space Agency / Copernicus (processed and hosted by Element 84 on AWS)", "Sentinel-2 Level-2A (surface reflectance) COGs", "scene dates as labelled on the sheet",
-                "https://registry.opendata.aws/sentinel-2-l2a-cogs/", "Copernicus Sentinel data, free and open (attribution required)", "Contains modified Copernicus Sentinel data.")
+SOURCE = Source("S2", "ESA Copernicus (COGs by Element 84)", "Sentinel-2 L2A COGs", "scene dates as labelled on the sheet",
+                "https://registry.opendata.aws/sentinel-2-l2a-cogs/", "free and open; contains modified Copernicus Sentinel data", "Contains modified Copernicus Sentinel data.")
 GOOD_SCL = (4, 5)              # vegetation and bare soil; water, cloud, shadow, snow and unclassified pixels are masked out of NDVI
 
 
