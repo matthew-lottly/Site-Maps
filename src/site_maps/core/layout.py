@@ -398,9 +398,23 @@ class Sheet:
         self.fig.savefig(out["pdf"], facecolor=self.t.paper)
         (outdir / f"{stem}.provenance.json").write_text(self.prov.to_json())
         (outdir / f"{stem}.sources.md").write_text(self.prov.to_markdown())
+        (outdir / f"{stem}.text.txt").write_text(self.text_inventory())
         out["issues"] = self.audit()
         plt.close(self.fig)
         return out
+
+    def text_inventory(self) -> str:
+        """Every string printed on the sheet, one per line, so each can be traced to a dataset field or a computed value."""
+        from matplotlib.text import Text
+
+        self.fig.canvas.draw()
+        seen, rows = set(), []
+        for t in self.fig.findobj(Text):
+            s = t.get_text().strip().replace("\n", " ⏎ ")
+            if s and t.get_visible() and s not in seen:
+                seen.add(s)
+                rows.append(s)
+        return "\n".join(rows) + "\n"
 
     def audit(self) -> list[str]:
         from .qa import audit

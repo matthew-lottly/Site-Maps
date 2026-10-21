@@ -3,14 +3,13 @@ import pandas as pd
 
 from site_maps.sources import ghcn
 from site_maps.sources.sentinel2 import _boa_offset, tile_for
-from site_maps.sources.worldcover import CLASSES, tile_urls
+from site_maps.sources.worldcover import tile_urls
 
 
 def test_worldcover_tile_naming():
     urls = tile_urls((-95.66, 29.33, -95.55, 29.41))
     assert len(urls) == 1 and "N27W096" in urls[0]
     assert len(tile_urls((-96.5, 29.5, -95.5, 29.6))) == 2          # 96.5 W lies in the W099 tile, 95.5 W in W096
-    assert set(CLASSES) >= {10, 80, 90}
 
 
 def test_sentinel_tile_and_offset_detection():

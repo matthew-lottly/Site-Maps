@@ -13,7 +13,9 @@ from shapely.geometry import box
 
 from ..core.cache import OUTPUTS, cache_path
 from ..core.frame import SiteFrame
+from ..core.labels import LabelPlacer
 from ..core.layout import Legend, Sheet, halo
+from ..core.place import context as place_context
 from ..core.provenance import ProvenanceLog
 from ..sources import dem as demsrc, ghcn, inat, overture as ov, sentinel2 as s2, worldcover as wc
 from ..sources.rasters import Grid, hillshade
@@ -104,11 +106,12 @@ class EnvironmentalSiteMap:
         park = site.to_crs(frame.crs)
         pg = park.geometry.iloc[0]
         prov.add("Site boundary: " + SITE_NAME, ov.SOURCE, 1, f"Overture land_use feature {SITE_ID} (subtype protected / class natural_monument)")
-        sheet = Sheet("Brazos Bend State Park, Texas", "Environmental site map · imagery, land cover, hydrography, field observations, vegetation condition and climate",
+        where = place_context(c.x, c.y)
+        sheet = Sheet(f"{SITE_NAME}, {where['region']}", "Environmental site map · imagery, land cover, hydrography, field observations, vegetation condition and climate",
                       f"{c.y:.4f}° N  {abs(c.x):.4f}° W  ·  park area {pg.area / 1e6:.1f} km²", frame, prov)
         ax = sheet.ax
         sheet.notes += ["Land cover is a 10 m global product and misclassifies small features.", "The park polygon is OSM-derived, not a surveyed boundary.",
-                        "Observation density follows where people walk, so it reflects observer effort as well as biodiversity.", "NDVI months without a clear scene are absent, not interpolated."]
+                        "Observation density can reflect observer effort as well as biodiversity.", "NDVI months without a clear scene are absent, not interpolated."]
 
         # imagery base: clearest recent scene
         scs = [s for s in s2.scenes(c.x, c.y, dt.date(2026, 3, 1), dt.date(2026, 10, 15)) if s.cloud < 50]
@@ -129,18 +132,18 @@ class EnvironmentalSiteMap:
         inside = mask_outside(None, pg, lgrid)
         lc_arr = np.ma.filled(lc, 0).astype(int)
         rgba = np.zeros(lc_arr.shape + (4,))
-        for code, (nm, col) in wc.CLASSES.items():
+        for code, (nm, col) in wc.classes().items():
             m = (lc_arr == code) & inside
             rgba[m] = to_rgba(col, 0.40)
         ax.imshow(rgba, extent=raster_extent(lgrid), origin="upper", zorder=2, interpolation="nearest")
         prov.add("Land cover inside the park boundary", wc.SOURCE, None, "10 m classes drawn at 40 % opacity over imagery, only inside the Overture park polygon")
         area = {}
         px = (lgrid.res ** 2) / 1e6
-        for code, (nm, col) in wc.CLASSES.items():
+        for code, (nm, col) in wc.classes().items():
             n = int(((lc_arr == code) & inside).sum())
             if n:
                 area[code] = n * px
-        self.log["land_cover_km2"] = {wc.CLASSES[k][0]: round(v, 3) for k, v in area.items()}
+        self.log["land_cover_km2"] = {wc.classes()[k][0]: round(v, 3) for k, v in area.items()}
 
         # hydrography
         water = overture_layer("water", frame, ["id", "names", "subtype", "class", "is_intermittent"], prov, "Hydrography (surface water)", tag="env")
@@ -150,12 +153,6 @@ class EnvironmentalSiteMap:
             wpoly.plot(ax=ax, fc="#38BDF8", ec="#0369A1", lw=0.6, alpha=0.55, zorder=3)
         if len(wline):
             wline.plot(ax=ax, color="#0369A1", lw=0.9, zorder=3)
-
-        named = wpoly[wpoly["name"].notna()] if len(wpoly) else wpoly
-        for _, r_ in named.iterrows():
-            if r_.geometry.area > 4e4:
-                p_ = r_.geometry.representative_point()
-                ax.text(p_.x, p_.y, r_["name"], fontsize=5.8, style="italic", color="#0C4A6E", ha="center", va="center", zorder=8, path_effects=halo(2.2, "#E0F2FE"))
 
         # roads and trails
         seg = overture_layer("segments", frame, ["id", "names", "class", "subclass", "road_surface"], prov, "Roads and trails", extra_filter=None, tag="env")
@@ -167,7 +164,6 @@ class EnvironmentalSiteMap:
             roads.plot(ax=ax, color="#52606D", lw=1.0, zorder=4.1)
         if len(trails):
             trails.plot(ax=ax, color="#7C2D12", lw=0.8, ls="--", zorder=4.2)
-        label_lines(ax, roads, "name", frame, 0.10, 6.2, exclude=lambda x, y: sheet_in_furniture(frame, x, y), max_labels=9)
 
         # park outline
         gpd.GeoSeries([pg], crs=frame.crs).boundary.plot(ax=ax, color="white", lw=3.6, zorder=6)
@@ -177,9 +173,9 @@ class EnvironmentalSiteMap:
         pl = places[places["category"].isin(["campground", "park", "nature_reserve", "visitor_center", "tourist_information_center", "hiking_trail", "picnic_area", "boat_ramp", "fishing_area", "lake"]) & (places["confidence"] >= 0.6)]
         pl = clip_to_frame(pl, frame)
         pl = pl[pl.within(pg.buffer(400))]
-        for _, r in pl.iterrows():
+        pl_rows = list(pl.iterrows())
+        for _, r in pl_rows:
             ax.plot(r.geometry.x, r.geometry.y, marker="s", ms=5.2, mfc="#F59E0B", mec="white", mew=0.8, zorder=20)
-            ax.annotate(r["name"], (r.geometry.x, r.geometry.y), xytext=(6, 4), textcoords="offset points", fontsize=6.2, fontweight="bold", color="#1F2933", zorder=21, path_effects=halo(2.4))
 
         # field observations
         obs = self.observations(frame, pg)
@@ -193,6 +189,21 @@ class EnvironmentalSiteMap:
         sheet.scale_bar()
         sheet.north_arrow()
 
+        # labels, placed with collision avoidance in priority order (places, then water names, then road names)
+        lp = LabelPlacer(ax)
+        lp.reserve_rect_axes(0.0, 0.0, 0.31, 0.2)
+        lp.reserve_rect_axes(0.88, 0.84, 1.0, 1.0)
+        for _, r in pl_rows:
+            lp.reserve_point(r.geometry.x, r.geometry.y, 5)
+        for _, r in pl_rows:
+            lp.place(r.geometry.x, r.geometry.y, r["name"], fontsize=6.4, fontweight="bold", color="#1F2933")
+        named = wpoly[wpoly["name"].notna()].assign(a_=lambda d: d.geometry.area).sort_values("a_", ascending=False) if len(wpoly) else wpoly
+        for _, r_ in named.iterrows():
+            if r_.geometry.area > 4e4:
+                p_ = r_.geometry.representative_point()
+                lp.place_centered(p_.x, p_.y, r_["name"], fontsize=5.9, style="italic", color="#0C4A6E", halo_color="#E0F2FE")
+        label_lines(ax, roads, "name", frame, 0.10, 6.0, max_labels=12, placer=lp)
+
         # --- right column
         sheet.locator(width_deg=9.0, height_in=1.05)
         lg = Legend("Legend")
@@ -204,7 +215,7 @@ class EnvironmentalSiteMap:
         lg.marker("Named point of interest", "#F59E0B", "s", 5)
         lg.header("Land cover inside park (WorldCover 10 m, 40 % opacity)")
         for code, v in sorted(area.items(), key=lambda kv: -kv[1]):
-            lg.patch(wc.CLASSES[code][0], wc.CLASSES[code][1])
+            lg.patch(wc.classes()[code][0], wc.classes()[code][1])
         if len(obs):
             lg.header("Research-grade observations")
             for g in [g for g in GROUP_COLORS if g in set(obs["group"])]:
@@ -220,9 +231,9 @@ class EnvironmentalSiteMap:
         t = sheet.t
         # row 1: land cover bars | observations by group
         panel = sheet.panel(1.5, "Composition and observations")
-        a1 = sheet.chart_axes(panel, (0.20, 0.17, 0.27, 0.50))
+        a1 = sheet.chart_axes(panel, (0.235, 0.17, 0.245, 0.50))
         items = sorted(area.items(), key=lambda kv: kv[1])
-        a1.barh([wc.CLASSES[k][0] for k, _ in items], [v for _, v in items], color=[wc.CLASSES[k][1] for k, _ in items], height=0.7, edgecolor="#6B7280", linewidth=0.3)
+        a1.barh([wc.classes()[k][0] for k, _ in items], [v for _, v in items], color=[wc.classes()[k][1] for k, _ in items], height=0.7, edgecolor="#6B7280", linewidth=0.3)
         tot = sum(area.values())
         for i, (k, v) in enumerate(items):
             a1.text(v, i, f" {v:.2f} km² ({v / tot:.0%})", va="center", fontsize=5.8, color=t.ink)
@@ -278,8 +289,3 @@ class EnvironmentalSiteMap:
             sheet.prov.add(f"Climate normals: GHCN {st['id']}", ghcn.SOURCE, None, f"{st['name']}, {km:.0f} km from the park centre; {len(yrs)} complete years in 1991–2020; mean daily max/min and mean monthly precipitation computed from daily values")
             self.log["climate_station"] = {"id": st["id"], "name": st["name"], "km": km, "years": len(yrs)}
 
-
-def sheet_in_furniture(frame, x, y) -> bool:
-    x0, y0, x1, y1 = frame.extent
-    W, H = x1 - x0, y1 - y0
-    return (x > x1 - 0.14 * W and y > y1 - 0.20 * H) or (x < x0 + 0.27 * W and y < y0 + 0.19 * H)

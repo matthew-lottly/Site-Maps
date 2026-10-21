@@ -40,7 +40,7 @@
     "version": "v200, reference year 2021",
     "url": "https://esa-worldcover.org/",
     "license": "CC BY 4.0",
-    "note": "Class names and colours as in the WorldCover v200 Product User Manual"
+    "note": "Class names and colours read from the GeoTIFF legend and colour table"
    }
   },
   {
