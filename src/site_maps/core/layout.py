@@ -380,10 +380,12 @@ class Sheet:
         f, t = self.fig, self.t
         a = f.add_axes((0, 0, 1, 0.075))
         a.set_axis_off()
-        a.plot([0.022, 0.978], [0.96, 0.96], color=t.rule, lw=0.6, transform=a.transAxes)
-        a.text(0.022, 0.78, f"Prepared {dt.date.today().isoformat()} · site-maps {__version__} ({git_rev()}) · data retrieved {self.prov.retrieved}", fontsize=6.5, color=t.muted, va="top", transform=a.transAxes)
-        a.text(0.022, 0.42, "Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.",
+        a.plot([0.022, 0.978], [0.99, 0.99], color=t.rule, lw=0.6, transform=a.transAxes)
+        a.text(0.022, 0.86, f"Prepared {dt.date.today().isoformat()} · site-maps {__version__} ({git_rev()}) · data retrieved {self.prov.retrieved}", fontsize=6.5, color=t.muted, va="top", transform=a.transAxes)
+        a.text(0.022, 0.64, "Every layer on this sheet is drawn from the public datasets listed in Data sources; nothing is simulated or hand-digitised. For orientation and research planning, not for survey, navigation or legal boundaries.",
                fontsize=6.0, color=t.muted, va="top", transform=a.transAxes)
+        if self.notes:
+            a.text(0.022, 0.43, textwrap.fill("Limits: " + "  ·  ".join(self.notes), 215), fontsize=5.6, color=t.muted, va="top", transform=a.transAxes, linespacing=1.2)
         a.text(0.978, 0.42, f"{self.frame.crs.name} ({self.frame.epsg}) · graticule WGS 84", fontsize=6.0, color=t.muted, va="top", ha="right", transform=a.transAxes)
 
     # ---------- output ----------

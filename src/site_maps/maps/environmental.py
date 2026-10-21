@@ -107,6 +107,8 @@ class EnvironmentalSiteMap:
         sheet = Sheet("Brazos Bend State Park, Texas", "Environmental site map · imagery, land cover, hydrography, field observations, vegetation condition and climate",
                       f"{c.y:.4f}° N  {abs(c.x):.4f}° W  ·  park area {pg.area / 1e6:.1f} km²", frame, prov)
         ax = sheet.ax
+        sheet.notes += ["Land cover is a 10 m global product and misclassifies small features.", "The park polygon is OSM-derived, not a surveyed boundary.",
+                        "Observation density follows where people walk, so it reflects observer effort as well as biodiversity.", "NDVI months without a clear scene are absent, not interpolated."]
 
         # imagery base: clearest recent scene
         scs = [s for s in s2.scenes(c.x, c.y, dt.date(2026, 3, 1), dt.date(2026, 10, 15)) if s.cloud < 50]
